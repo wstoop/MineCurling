@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class Obstacles : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _explosionVFX;
+
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.TryGetComponent<CurlingStoneController>(out var player))
+        if (collision.CompareTag("Player"))
         {
-            player.Body.linearVelocity *= 0.5f;
+            collision.GetComponent<Rigidbody>().linearVelocity *= 0.5f;
+            Instantiate(_explosionVFX, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
-    }
-
-    private void OnTriggerExit(Collider collision)
-    {
-        
     }
 }
