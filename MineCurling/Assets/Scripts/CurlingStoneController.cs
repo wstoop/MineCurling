@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,24 +7,32 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Collider), typeof(Rigidbody), typeof(PlayerInput))]
 public class CurlingStoneController : MonoBehaviour
 {
+    [Header("Sweep Params")]
     [SerializeField, Min(1f)]
     private float _sweepForceMultiplier = 1.1f;
 
     [SerializeField, Min(0.1f)]
     private float _minimumVelocityThreshold = 1f;
 
+    [Header("Turning Params")]
+    [SerializeField]
+    private float _addedAngularVelocity = 1f;
+
     enum SweepDirection { None, Left, Right }
+    enum TurnDirection { None, CW, CCW };
 
     private Collider _collider = null;
     private Rigidbody _rigidbody = null;
     private PhysicsMaterial _physicsMaterial = null;
 
-    public Rigidbody Body => _rigidbody;
 
     private float _lastXValue = 0.0f;
+    private float _currentAngle = 0.0f;
+    private Vector2 _lastTurnInput = Vector2.zero;
     private SweepDirection _lastDirection = SweepDirection.None;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Rigidbody Body => _rigidbody;
+
     void Start()
     {
         _physicsMaterial = new PhysicsMaterial
@@ -54,6 +63,9 @@ public class CurlingStoneController : MonoBehaviour
             var dir = new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z).normalized;
             _rigidbody.linearVelocity = dir * _minimumVelocityThreshold;
         }
+
+
+        _rigidbody.linearVelocity = _rigidbody.linearVelocity.magnitude * _rigidbody.transform.forward.normalized;
     }
 
     public void OnSweep(InputAction.CallbackContext context)
@@ -73,6 +85,53 @@ public class CurlingStoneController : MonoBehaviour
     public void OnTurn(InputAction.CallbackContext context)
     {
         var inputVector = context.ReadValue<Vector2>();
+
+        float angle = Vector2.SignedAngle(_lastTurnInput, inputVector);
+
+        if (inputVector.sqrMagnitude <= 0)
+        {
+            _lastTurnInput = Vector2.zero;
+            return;
+        }
+
+        if (_lastTurnInput == Vector2.zero)
+        {
+            _lastTurnInput = inputVector;
+        }
+
+        if (MathF.Sign(angle) != MathF.Sign(_currentAngle) && _currentAngle != 0f)
+        {
+            _currentAngle = 0f;
+            return;
+        }
+
+        if (MathF.Abs(angle) < 10f) return;
+
+        if (MathF.Abs(angle) > 45f)
+        {
+            _lastTurnInput = inputVector;
+            return;
+        }
+
+        _currentAngle += angle;
+
+        if (MathF.Abs(_currentAngle) >= 360f)
+        {
+            _currentAngle = 0f;
+
+            if (angle < 0f)
+            {
+                Turn(TurnDirection.CW);
+            }
+            else if (angle > 0f)
+            {
+                Turn(TurnDirection.CCW);
+            }
+
+            Debug.Log("Full rotation completed!");
+        }
+
+        _lastTurnInput = inputVector;
 
     }
 
@@ -95,6 +154,34 @@ public class CurlingStoneController : MonoBehaviour
 
             case SweepDirection.Right:
                 break;
+        }
+    }
+
+    private void Turn(TurnDirection direction)
+    {
+        switch (direction)
+        {
+            case TurnDirection.CW:
+                Debug.Log("Turning Clockwise");
+
+                _rigidbody.AddTorque(Vector3.up * _addedAngularVelocity, ForceMode.Force);
+                break;
+            case TurnDirection.CCW:
+                Debug.Log("Turning Counter-Clockwise");
+                _rigidbody.AddTorque(Vector3.down * _addedAngularVelocity, ForceMode.Force);
+                break;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward);
+
+        if (_rigidbody != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, transform.position + _rigidbody.linearVelocity.normalized);
         }
     }
 }
