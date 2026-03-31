@@ -11,66 +11,39 @@ public class MineBehaviour : MonoBehaviour
     [SerializeField]
     private float _force = 1;
     [SerializeField]
+    private float _radius = 6;
+    [SerializeField]
     private GameObject _explosionVFX;
-
-    private List<Rigidbody> playersRB = new List<Rigidbody>();
-    private SphereCollider sphereCollider;
-    private BoxCollider boxCollider;
-
-
-    private void Awake()
-    {
-        sphereCollider = GetComponent<SphereCollider>();
-        boxCollider = GetComponent<BoxCollider>();
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-       if(other.CompareTag("Player"))
-       {
-            Debug.Log("Player entered the mine area");
-            Rigidbody rb = other.GetComponent<Rigidbody>();
-            if(rb != null)
-            {
-                Debug.Log("Player Rigidbody found, adding to list");
-                if (playersRB.Contains(rb))
-                {
-                    return;
-                }
-                playersRB.Add(rb);
-            }
-            else Debug.LogWarning("Player Rigidbody not found");
-        }
-    }
 
     private void OnTriggerExit(Collider other)
     {
-        Rigidbody rb = other.GetComponent<Rigidbody>();
-        if (rb != null)
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-            {
-                playersRB.Remove(rb);
-            }
-            Debug.Log("Player left the mine area, detonating");
-            StartCoroutine(Explode());
+            Explode();
         }
     }
 
-    IEnumerator Explode()
+    private void Explode()
     {
-        boxCollider.enabled = false;
-        sphereCollider.enabled = true;
-        yield return new WaitForSeconds(0.05f);
-        Debug.Log("Explode start");
-        Debug.Log("Applying force to " + playersRB.Count + " players");
-        foreach (var playerRB in playersRB)
-        {
-            Vector3 direction = (playerRB.transform.position - transform.position).normalized;
-            playerRB.AddForce(direction * _force, ForceMode.Impulse);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _radius);
+            foreach (var collider in colliders)
+            {
+                Rigidbody rb;
+                if (collider.gameObject.CompareTag("Player") && collider.gameObject.TryGetComponent(out rb))
+                {
+                    Vector3 direction = (rb.transform.position - transform.position).normalized;
+                    rb.AddForce(direction * _force, ForceMode.Impulse);
+                }
+            }
+            if(_explosionVFX != null)
+                Instantiate(_explosionVFX, transform.position, Quaternion.identity);
+            Destroy(gameObject);
 
-        }
-        Debug.Log("Explode End");
-        Instantiate(_explosionVFX, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
 }
