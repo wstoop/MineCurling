@@ -31,7 +31,7 @@ public class LookAhead : MonoBehaviour
 
             if(i == 0)
             {
-                _targetGroup.Targets[groupIndex].Radius = 20;
+                _targetGroup.Targets[groupIndex].Radius = 15;
             }
             else if(i == _targets.Count - 1)
             {
