@@ -3,16 +3,51 @@ using UnityEngine;
 
 public class Obstacles : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider collision)
+    [SerializeField]
+    private GameObject _explosionVFX;
+
+    [SerializeField]
+    private float _movementSpeed;
+    [SerializeField]
+    private float _rotationSpeed;
+    [SerializeField]
+    private float _lifeTime;
+    [SerializeField]
+    private bool _hasLifetime;
+
+    private bool rotationPositive;
+
+    private float lifetimeTimer;
+
+    private void Update()
     {
-        if (collision.TryGetComponent<CurlingStoneController>(out var player))
+        if(_hasLifetime)
         {
-            player.Body.linearVelocity *= 0.5f;
+            lifetimeTimer += Time.deltaTime;
+
+            if (lifetimeTimer >= _lifeTime)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        transform.position += (transform.forward * _movementSpeed) * Time.deltaTime;
+        transform.RotateAround(transform.position, transform.forward, (rotationPositive ? _rotationSpeed : -_rotationSpeed) * Time.deltaTime);
+
+        if ((transform.rotation.z > 0.05) || (transform.rotation.z < -0.05))
+        {
+            rotationPositive = !rotationPositive;
+            transform.rotation = Quaternion.Euler(0, 0, (rotationPositive ? -5 : 5));
         }
     }
 
-    private void OnTriggerExit(Collider collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponent<Rigidbody>().linearVelocity *= 0.5f;
+            Instantiate(_explosionVFX, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 }

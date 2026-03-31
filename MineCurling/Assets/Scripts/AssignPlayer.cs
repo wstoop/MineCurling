@@ -5,10 +5,20 @@ public class AssignPlayer : MonoBehaviour
 {
     void Start()
     {
-        CinemachineTargetGroup targetGroup = GameObject.Find("MainCamera").transform.Find("Target Group").GetComponent<CinemachineTargetGroup>();
-        if (targetGroup != null)
+        var targetGroup = GameObject.Find("MainCamera").transform.Find("Target Group");
+
+        CinemachineTargetGroup targetGroupComponent = targetGroup.GetComponent<CinemachineTargetGroup>();
+
+        if (targetGroupComponent != null)
         {
-            targetGroup.AddMember(this.transform, 1, 10);
+            targetGroupComponent.AddMember(this.transform, 1, 10);
+        }
+
+        LookAhead lookAhead = targetGroup.GetComponent<LookAhead>();
+
+        if (lookAhead != null)
+        {
+            lookAhead.AssignTarget(this.transform);
         }
     }
 }
