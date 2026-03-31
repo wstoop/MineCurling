@@ -10,11 +10,22 @@ public class Obstacles : MonoBehaviour
     private float _movementSpeed;
     [SerializeField]
     private float _rotationSpeed;
+    [SerializeField]
+    private float _lifeTime;
 
     private bool rotationPositive;
 
+    private float lifetimeTimer;
+
     private void Update()
     {
+        lifetimeTimer += Time.deltaTime;
+
+        if(lifetimeTimer >= _lifeTime)
+        {
+            Destroy(gameObject);
+        }
+
         transform.position += (transform.forward * _movementSpeed) * Time.deltaTime;
         transform.RotateAround(transform.position, transform.forward, (rotationPositive ? _rotationSpeed : -_rotationSpeed) * Time.deltaTime);
 

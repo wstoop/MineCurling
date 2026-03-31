@@ -48,8 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacles
   _explosionVFX: {fileID: 5292527496539588336, guid: 90165964d11f0a54aafe2dfb1fbe6f45, type: 3}
-  _movementSpeed: 0
-  _rotationSpeed: 0
+  _movementSpeed: 2
+  _rotationSpeed: 50
+  _lifeTime: 15
 --- !u!65 &-8204616492686289435
 BoxCollider:
   m_ObjectHideFlags: 0
