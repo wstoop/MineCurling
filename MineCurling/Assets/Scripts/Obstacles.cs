@@ -7,9 +7,7 @@ public class Obstacles : MonoBehaviour
     {
         if (collision.TryGetComponent<CurlingStoneController>(out var player))
         {
-            UnityEngine.Debug.Log(player.Body.linearVelocity);
             player.Body.linearVelocity *= 0.5f;
-            UnityEngine.Debug.Log(player.Body.linearVelocity);
         }
     }
 
