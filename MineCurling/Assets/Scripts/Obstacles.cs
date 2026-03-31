@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class Obstacles : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        CurlingStoneController player = collision.collider.GetComponent<CurlingStoneController>();
-
-        if (player == null)
+        if (collision.TryGetComponent<CurlingStoneController>(out var player))
         {
+            UnityEngine.Debug.Log(player.Body.linearVelocity);
             player.Body.linearVelocity *= 0.5f;
+            UnityEngine.Debug.Log(player.Body.linearVelocity);
         }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        
     }
 }
