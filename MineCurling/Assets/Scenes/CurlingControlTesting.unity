@@ -205,13 +205,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169212743}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 10, z: -50}
+  m_LocalRotation: {x: 0.2588191, y: -0, z: -0, w: 0.9659258}
+  m_LocalPosition: {x: 0, y: 6.7200003, z: -5.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!114 &169212747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 80a7aba5ea3f62a49af28149e168713a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -363,7 +363,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0.35, z: 0.5}
-  m_LocalScale: {x: 100, y: 1, z: 100}
+  m_LocalScale: {x: 1000, y: 1, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -507,14 +507,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CurlingsStone
       objectReference: {fileID: 0}
-    - target: {fileID: 6196496681799910015, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
-      propertyPath: _sweepForceMultiplier
-      value: 1.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196496681799910015, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
-      propertyPath: _minimumVelocityThreshold
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7705157667033102229, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -525,7 +517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7705157667033102229, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -41
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7705157667033102229, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
       propertyPath: m_LocalRotation.w
