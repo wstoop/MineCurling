@@ -12,6 +12,8 @@ public class Obstacles : MonoBehaviour
     private float _rotationSpeed;
     [SerializeField]
     private float _lifeTime;
+    [SerializeField]
+    private bool _hasLifetime;
 
     private bool rotationPositive;
 
@@ -19,11 +21,14 @@ public class Obstacles : MonoBehaviour
 
     private void Update()
     {
-        lifetimeTimer += Time.deltaTime;
-
-        if(lifetimeTimer >= _lifeTime)
+        if(_hasLifetime)
         {
-            Destroy(gameObject);
+            lifetimeTimer += Time.deltaTime;
+
+            if (lifetimeTimer >= _lifeTime)
+            {
+                Destroy(gameObject);
+            }
         }
 
         transform.position += (transform.forward * _movementSpeed) * Time.deltaTime;
