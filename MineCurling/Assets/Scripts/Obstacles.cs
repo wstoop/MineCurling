@@ -6,6 +6,25 @@ public class Obstacles : MonoBehaviour
     [SerializeField]
     private GameObject _explosionVFX;
 
+    [SerializeField]
+    private float _movementSpeed;
+    [SerializeField]
+    private float _rotationSpeed;
+
+    private bool rotationPositive;
+
+    private void Update()
+    {
+        transform.position += (transform.forward * _movementSpeed) * Time.deltaTime;
+        transform.RotateAround(transform.position, transform.forward, (rotationPositive ? _rotationSpeed : -_rotationSpeed) * Time.deltaTime);
+
+        if ((transform.rotation.z > 0.05) || (transform.rotation.z < -0.05))
+        {
+            rotationPositive = !rotationPositive;
+            transform.rotation = Quaternion.Euler(0, 0, (rotationPositive ? -5 : 5));
+        }
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Player"))
