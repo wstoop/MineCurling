@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -12,7 +13,7 @@ public class MineBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject _explosionVFX;
 
-    private List<GameObject> players = new List<GameObject>();
+    private List<Rigidbody> playersRB = new List<Rigidbody>();
     private SphereCollider sphereCollider;
     private BoxCollider boxCollider;
 
@@ -26,21 +27,29 @@ public class MineBehaviour : MonoBehaviour
     {
        if(other.CompareTag("Player"))
        {
-            if (players.Contains(other.gameObject))
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            if(rb != null)
             {
-                return;
+                if (playersRB.Contains(rb))
+                {
+                    return;
+                }
+                playersRB.Add(rb);
             }
-            players.Add(other.gameObject);
        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        Rigidbody rb = other.GetComponent<Rigidbody>();
+        if (rb != null)
         {
-            players.Remove(other.gameObject);
+            if (other.CompareTag("Player"))
+            {
+                playersRB.Remove(rb);
+            }
+            StartCoroutine(Explode());
         }
-        StartCoroutine(Explode());
     }
 
     IEnumerator Explode()
@@ -48,14 +57,15 @@ public class MineBehaviour : MonoBehaviour
         boxCollider.enabled = false;
         sphereCollider.enabled = true;
         yield return new WaitForSeconds(0.05f);
-        Debug.Log("Explode start");
-        Debug.Log("Applying force to " + players.Count + " players");
-        foreach (var player in players)
+        //Debug.Log("Explode start");
+        //Debug.Log("Applying force to " + playersRB.Count + " players");
+        foreach (var playerRB in playersRB)
         {
-            Vector3 direction = (player.transform.position - transform.position).normalized;
-            player.GetComponent<Rigidbody>().AddForce(direction * _force, ForceMode.Impulse);
+            Vector3 direction = (playerRB.transform.position - transform.position).normalized;
+            playerRB.AddForce(direction * _force, ForceMode.Impulse);
+
         }
-        Debug.Log("Explode End");
+        //Debug.Log("Explode End");
         Instantiate(_explosionVFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
