@@ -45,7 +45,7 @@ public class Obstacles : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Rigidbody>().linearVelocity *= 0.5f;
+            collision.GetComponent<Rigidbody>().linearVelocity /= 2;
             Instantiate(_explosionVFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
