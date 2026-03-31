@@ -27,16 +27,19 @@ public class MineBehaviour : MonoBehaviour
     {
        if(other.CompareTag("Player"))
        {
+            Debug.Log("Player entered the mine area");
             Rigidbody rb = other.GetComponent<Rigidbody>();
             if(rb != null)
             {
+                Debug.Log("Player Rigidbody found, adding to list");
                 if (playersRB.Contains(rb))
                 {
                     return;
                 }
                 playersRB.Add(rb);
             }
-       }
+            else Debug.LogWarning("Player Rigidbody not found");
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -48,6 +51,7 @@ public class MineBehaviour : MonoBehaviour
             {
                 playersRB.Remove(rb);
             }
+            Debug.Log("Player left the mine area, detonating");
             StartCoroutine(Explode());
         }
     }
@@ -57,15 +61,15 @@ public class MineBehaviour : MonoBehaviour
         boxCollider.enabled = false;
         sphereCollider.enabled = true;
         yield return new WaitForSeconds(0.05f);
-        //Debug.Log("Explode start");
-        //Debug.Log("Applying force to " + playersRB.Count + " players");
+        Debug.Log("Explode start");
+        Debug.Log("Applying force to " + playersRB.Count + " players");
         foreach (var playerRB in playersRB)
         {
             Vector3 direction = (playerRB.transform.position - transform.position).normalized;
             playerRB.AddForce(direction * _force, ForceMode.Impulse);
 
         }
-        //Debug.Log("Explode End");
+        Debug.Log("Explode End");
         Instantiate(_explosionVFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

@@ -53,19 +53,21 @@ public class CurlingStoneController : MonoBehaviour
         }
 
         _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.AddForce(Vector3.forward * _minimumVelocityThreshold, ForceMode.Impulse);
     }
 
     private void Update()
     {
-        if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold)
+        if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold * _minimumVelocityThreshold)
         {
-            var dir = new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z).normalized;
-            _rigidbody.linearVelocity = dir * _minimumVelocityThreshold;
+            _rigidbody.AddForce(Vector3.forward * _minimumVelocityThreshold, ForceMode.Impulse);
         }
 
 
-        _rigidbody.linearVelocity = _rigidbody.linearVelocity.magnitude * _rigidbody.transform.forward.normalized;
+        Vector3 noGrav = new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z);
+
+        var newVelocity = noGrav.magnitude * _rigidbody.transform.forward;
+
+        _rigidbody.linearVelocity = new Vector3(newVelocity.x, _rigidbody.linearVelocity.y, newVelocity.z);
     }
 
     public void OnSweep(InputAction.CallbackContext context)
