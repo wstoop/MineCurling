@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
-[RequireComponent(typeof(Collider), typeof(Rigidbody))]
+[RequireComponent(typeof(Collider), typeof(Rigidbody), typeof(PlayerInput))]
 public class CurlingStoneController : MonoBehaviour
 {
     private Collider _collider = null;
@@ -9,6 +11,8 @@ public class CurlingStoneController : MonoBehaviour
     private PhysicsMaterial _physicsMaterial = null;
 
     public Rigidbody Body => _rigidbody;
+
+    //private _last
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +35,19 @@ public class CurlingStoneController : MonoBehaviour
         }
 
         _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    public void OnSweep(InputAction.CallbackContext context)
+    {
+        var xValue = context.ReadValue<Vector2>().x;
+
+
+    }
+
+    public void OnTurn(InputAction.CallbackContext context)
+    {
+        var inputVector = context.ReadValue<Vector2>();
+
     }
 
     // Update is called once per frame
