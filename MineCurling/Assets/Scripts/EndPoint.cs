@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EndPoint : MonoBehaviour
 {
+    private static int _givenPoints = 3;
+
     public struct EndPointData
     {
         public int RedPoints;
@@ -62,5 +64,39 @@ public class EndPoint : MonoBehaviour
         _blueText.text = _data.BluePoints.ToString();
         _greenText.text = _data.GreenPoints.ToString();
         _yellowText.text = _data.YellowPoints.ToString();
+    }
+
+    public void ResetPoints()
+    {
+        _givenPoints = 3;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_givenPoints == 0) return;
+
+        switch (other.gameObject.layer)
+        {
+            case 6:
+                _data.RedPoints += _givenPoints;
+                --_givenPoints;
+                UpdateText();
+                break;
+            case 7:
+                _data.BluePoints += _givenPoints;
+                --_givenPoints;
+                UpdateText();
+                break;
+            case 8:
+                _data.GreenPoints += _givenPoints;
+                --_givenPoints;
+                UpdateText();
+                break;
+            case 9:
+                _data.YellowPoints += _givenPoints;
+                --_givenPoints;
+                UpdateText();
+                break;
+        }
     }
 }
