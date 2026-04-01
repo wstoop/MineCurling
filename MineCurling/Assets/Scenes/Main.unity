@@ -1227,6 +1227,16 @@ MonoBehaviour:
   - {fileID: 195353359}
   - {fileID: 863041239}
   - {fileID: 1462083537}
+  _playerMaterials:
+  - {fileID: 2100000, guid: 898c123eaba13f7428b6d01afed0a605, type: 2}
+  - {fileID: 2100000, guid: b4219dde66b7d2c48ad1121a44fb3479, type: 2}
+  - {fileID: 2100000, guid: e3d87f9b7d2f65047a362e38994dddf2, type: 2}
+  - {fileID: 2100000, guid: f5f8b0bd6803edd41bc8abe015c83340, type: 2}
+  _broomMaterials:
+  - {fileID: 2100000, guid: 8b035c3da56cacb41a024c323626229b, type: 2}
+  - {fileID: 2100000, guid: 81c87099258bf4249ae29721ad435c41, type: 2}
+  - {fileID: 2100000, guid: 2d37c726ff09553469605e5fb8c76749, type: 2}
+  - {fileID: 2100000, guid: ed5c955523d99b44180e12ead6148ec5, type: 2}
 --- !u!1001 &61817292
 PrefabInstance:
   m_ObjectHideFlags: 0
