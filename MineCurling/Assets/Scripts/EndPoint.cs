@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class EndPoint : MonoBehaviour
@@ -12,17 +13,54 @@ public class EndPoint : MonoBehaviour
 
     private EndPointData _data;
 
-    [SerializeField] PointCircle _threePoint;
-    [SerializeField] PointCircle _twoPoint;
-    [SerializeField] PointCircle _onePoint;
+    [SerializeField] TextMeshProUGUI _redText;
+    [SerializeField] TextMeshProUGUI _blueText;
+    [SerializeField] TextMeshProUGUI _greenText;
+    [SerializeField] TextMeshProUGUI _yellowText;
 
-    public EndPointData GetData()
+    public void AddPoint(LayerMask layer)
     {
-        _data.RedPoints = _threePoint.RedPoints + _twoPoint.RedPoints + _onePoint.RedPoints;
-        _data.BluePoints = _threePoint.BluePoints + _twoPoint.BluePoints + _onePoint.BluePoints;
-        _data.GreenPoints = _threePoint.GreenPoints + _twoPoint.GreenPoints + _onePoint.GreenPoints;
-        _data.YellowPoints = _threePoint.YellowPoints + _twoPoint.YellowPoints + _onePoint.YellowPoints;
+        switch(layer.value)
+        {
+            case 6:
+                _data.RedPoints++;
+                break;
+            case 7:
+                _data.BluePoints++;
+                break;
+            case 8:
+                _data.GreenPoints++;
+                break;
+            case 9:
+                _data.YellowPoints++;
+                break;
+        }
+    }
 
-        return _data;
+    public void RemovePoint(LayerMask layer)
+    {
+        switch (layer.value)
+        {
+            case 6:
+                _data.RedPoints--;
+                break;
+            case 7:
+                _data.BluePoints--;
+                break;
+            case 8:
+                _data.GreenPoints--;
+                break;
+            case 9:
+                _data.YellowPoints--;
+                break;
+        }
+    }
+
+    public void UpdateText()
+    {
+        _redText.text = _data.RedPoints.ToString();
+        _blueText.text = _data.BluePoints.ToString();
+        _greenText.text = _data.GreenPoints.ToString();
+        _yellowText.text = _data.YellowPoints.ToString();
     }
 }

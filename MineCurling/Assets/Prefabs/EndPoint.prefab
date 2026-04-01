@@ -48,7 +48,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110c03e0913737940a6c1e626faa9084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointCircle
+  _endPoint: {fileID: 3408193175376662906}
 --- !u!1 &3568481491169859774
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +115,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -132,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110c03e0913737940a6c1e626faa9084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointCircle
+  _endPoint: {fileID: 3408193175376662906}
 --- !u!1 &4565917489244421823
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +182,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -198,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110c03e0913737940a6c1e626faa9084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointCircle
+  _endPoint: {fileID: 3408193175376662906}
 --- !u!1 &8276601861636886845
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c58fe2e763fbe4daac535cbec447df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndPoint
-  _threePoint: {fileID: 6949963829845433167}
-  _twoPoint: {fileID: 6756758082329494912}
-  _onePoint: {fileID: 3147846316330719698}
+  _redText: {fileID: 0}
+  _blueText: {fileID: 0}
+  _greenText: {fileID: 0}
+  _yellowText: {fileID: 0}
