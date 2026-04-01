@@ -66,7 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7b411da74ae9c3f4fa366f84afaaf012, type: 2}
     - target: {fileID: 919132149155446097, guid: 768d0f51cc6ff7f4f887f762ea6ee167, type: 3}
       propertyPath: m_Name
-      value: flag (3)
+      value: FlagRed
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 768d0f51cc6ff7f4f887f762ea6ee167, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
