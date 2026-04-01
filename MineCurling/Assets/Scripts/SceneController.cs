@@ -1,24 +1,29 @@
+using EasyTransition;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    public TransitionSettings transition;
     // Loads a scene by name
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        //SceneManager.LoadScene(sceneName);
+        TransitionManager.Instance().Transition(sceneName, transition, 1);
     }
 
     // Loads a scene by index
     public void LoadScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
+        
     }
 
     // Loads a scene asynchronously (for smoother transitions)
     public void LoadSceneAsync(string sceneName)
     {
         SceneManager.LoadSceneAsync(sceneName);
+
     }
 
     // Reloads the current scene
