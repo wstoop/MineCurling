@@ -1,13 +1,15 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(CurlingStoneController))]
+[RequireComponent(typeof(CurlingStoneController), typeof(Rigidbody))]
 public class CurlingFeedback : MonoBehaviour
 {
 
     [Header("Visuals:")]
     [SerializeField]
     private GameObject _broom = null;
+    [SerializeField]
+    private GameObject _stone = null;
 
 
     [Header("Brooming:")]
@@ -20,6 +22,9 @@ public class CurlingFeedback : MonoBehaviour
 
     private Transform _currentTarget = null;
 
+    private Vector3 _initialStoneRotation = Vector3.zero;
+    private Rigidbody _body = null;
+
     private void Start()
     {
         if (_broom == null)
@@ -29,6 +34,11 @@ public class CurlingFeedback : MonoBehaviour
         else
         {
             _broom.SetActive(false);
+        }
+
+        if(_stone == null)
+        {
+            Debug.LogError("Stone GameObject reference is not set in the inspector.");
         }
 
         if (_leftSweepTarget == null)
@@ -52,11 +62,25 @@ public class CurlingFeedback : MonoBehaviour
         {
             Debug.LogError("CurlingStoneController component not found on the GameObject.");
         }
+
+        _body = GetComponent<Rigidbody>();
+
+        if (_body == null)
+        {
+            Debug.LogError("Rigidbody component not found on the GameObject.");
+        }
     }
 
     private void Update()
     {
         MoveBroom();
+
+        if (_initialStoneRotation == Vector3.zero && _stone != null)
+        {
+            _initialStoneRotation = _stone.transform.rotation.eulerAngles;
+        }
+
+        _stone.transform.rotation = Quaternion.Euler(_initialStoneRotation);
     }
 
     private void MoveBroom()
