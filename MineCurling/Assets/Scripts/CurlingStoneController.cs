@@ -21,18 +21,20 @@ public class CurlingStoneController : MonoBehaviour
     [SerializeField]
     private float _addedAngularVelocity = 1f;
 
-    enum SweepDirection { None, Left, Right }
-    enum TurnDirection { None, CW, CCW };
+    public enum SweepDirection { None, Left, Right }
+    public enum TurnDirection { None, CW, CCW };
 
     private Collider _collider = null;
     private Rigidbody _rigidbody = null;
     private PhysicsMaterial _physicsMaterial = null;
 
-
     private float _lastXValue = 0.0f;
     private float _currentAngle = 0.0f;
     private Vector2 _lastTurnInput = Vector2.zero;
     private SweepDirection _lastDirection = SweepDirection.None;
+
+    public Action<SweepDirection> OnSweepCallback { get; set; }
+    public Action<TurnDirection> OnTurnCallback { get; set; }
 
     public Rigidbody Body => _rigidbody;
 
@@ -139,11 +141,10 @@ public class CurlingStoneController : MonoBehaviour
                 Turn(TurnDirection.CCW);
             }
 
-            Debug.Log("Full rotation completed!");
+            //Debug.Log("Full rotation completed!");
         }
 
         _lastTurnInput = inputVector;
-
     }
 
     private void Sweep(SweepDirection direction)
@@ -153,19 +154,7 @@ public class CurlingStoneController : MonoBehaviour
         _rigidbody.linearVelocity *= _sweepForceMultiplier;
         _lastDirection = direction;
 
-        // maybe for player feedback, but not for physics calculations,
-        // as the physics material should be doing that for us
-        switch (direction)
-        {
-            case SweepDirection.None:
-                break;
-
-            case SweepDirection.Left:
-                break;
-
-            case SweepDirection.Right:
-                break;
-        }
+        OnSweepCallback?.Invoke(direction);
     }
 
     private void Turn(TurnDirection direction)
@@ -173,15 +162,17 @@ public class CurlingStoneController : MonoBehaviour
         switch (direction)
         {
             case TurnDirection.CW:
-                Debug.Log("Turning Clockwise");
+                //Debug.Log("Turning Clockwise");
 
                 _rigidbody.AddTorque(Vector3.up * _addedAngularVelocity, ForceMode.Force);
                 break;
             case TurnDirection.CCW:
-                Debug.Log("Turning Counter-Clockwise");
+                //Debug.Log("Turning Counter-Clockwise");
                 _rigidbody.AddTorque(Vector3.down * _addedAngularVelocity, ForceMode.Force);
                 break;
         }
+
+        OnTurnCallback?.Invoke(direction);
     }
 
     private void OnDrawGizmos()
@@ -196,15 +187,9 @@ public class CurlingStoneController : MonoBehaviour
         }
     }
 
-    
-
     private void OnCollisionEnter(Collision collision)
     {
-        //if (collision.gameObject != gameObject) return;
-
         _rigidbody.angularVelocity = new Vector3(0f, _rigidbody.angularVelocity.y, 0f);
-
-        Debug.Log(_rigidbody.angularVelocity);
 
         var  dir = Vector3.Reflect(_rigidbody.linearVelocity.normalized, collision.contacts[0].normal);
 
@@ -213,15 +198,8 @@ public class CurlingStoneController : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
 
-
-
         _rigidbody.angularVelocity *= 0.75f;
 
-
-        //transform.position += collision.contacts[0].normal * 0.05f;
-
         _rigidbody.angularVelocity = new Vector3(0f, 0f, 0f);
-
-        Debug.Log(_rigidbody.angularVelocity);
     }
 }
