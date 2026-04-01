@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(BoxCollider), typeof(Rigidbody), typeof(PlayerInput))]
-public class CurlingStoneController : MonoBehaviour
+public class ControllerTest : MonoBehaviour
 {
     [SerializeField]
     private float _initialSpeed = 5f;
@@ -63,7 +63,7 @@ public class CurlingStoneController : MonoBehaviour
     {
         Vector3 noGrav = new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z);
 
-        var newVelocity = noGrav.magnitude * _rigidbody.transform.forward;
+        var newVelocity = noGrav.magnitude * _rigidbody.linearVelocity.normalized;
 
         _rigidbody.linearVelocity = new Vector3(newVelocity.x, _rigidbody.linearVelocity.y, newVelocity.z);
     }
@@ -76,7 +76,7 @@ public class CurlingStoneController : MonoBehaviour
         }
 
 
-        
+
     }
 
     public void OnSweep(InputAction.CallbackContext context)
@@ -196,7 +196,7 @@ public class CurlingStoneController : MonoBehaviour
         }
     }
 
-    
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -206,7 +206,7 @@ public class CurlingStoneController : MonoBehaviour
 
         Debug.Log(_rigidbody.angularVelocity);
 
-        var  dir = Vector3.Reflect(_rigidbody.linearVelocity.normalized, collision.contacts[0].normal);
+        var dir = Vector3.Reflect(_rigidbody.linearVelocity.normalized, collision.contacts[0].normal);
 
         dir.y = 0f;
         dir.Normalize();
@@ -218,9 +218,7 @@ public class CurlingStoneController : MonoBehaviour
         _rigidbody.angularVelocity *= 0.75f;
 
 
-        //transform.position += collision.contacts[0].normal * 0.05f;
-
-        _rigidbody.angularVelocity = new Vector3(0f, 0f, 0f);
+        transform.position += collision.contacts[0].normal * 0.05f;
 
         Debug.Log(_rigidbody.angularVelocity);
     }
