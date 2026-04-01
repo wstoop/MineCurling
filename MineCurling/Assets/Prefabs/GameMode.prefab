@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameMode
   _firstWaveStart: 0
-  _waveStartFrequency: 5
-  _waveEndFrequency: 7
-  _waveFrequencyIncrement: 0.5
+  _waveStartFrequency: 2
+  _waveEndFrequency: 0
+  _waveFrequencyIncrement: 0
