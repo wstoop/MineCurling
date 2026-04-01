@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CurlingStoneController))]
-public class BroomBehaviour : MonoBehaviour
+public class CurlingFeedback : MonoBehaviour
 {
 
     [Header("Visuals:")]

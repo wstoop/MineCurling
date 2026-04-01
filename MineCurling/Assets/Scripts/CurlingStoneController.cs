@@ -28,12 +28,20 @@ public class CurlingStoneController : MonoBehaviour
     private Rigidbody _rigidbody = null;
     private PhysicsMaterial _physicsMaterial = null;
 
-    private float _lastXValue = 0.0f;
+    private float _lastYValue = 0.0f;
     private float _currentAngle = 0.0f;
     private Vector2 _lastTurnInput = Vector2.zero;
     private SweepDirection _lastDirection = SweepDirection.None;
     private float _lastSweepTime = 0f;
     private float _sweepCooldown = 0.5f;
+
+    private bool _isStoppable = false;
+
+    public bool IsStoppable
+    {
+        get => _isStoppable;
+        set => _isStoppable = value;
+    }
 
     public Action<SweepDirection> OnSweepCallback { get; set; }
     public Action<TurnDirection> OnTurnCallback { get; set; }
@@ -74,7 +82,7 @@ public class CurlingStoneController : MonoBehaviour
 
     private void Update()
     {
-        if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold)
+        if ((_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold) && !_isStoppable)
         {
             _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _minimumVelocityThreshold;
         }
@@ -98,13 +106,13 @@ public class CurlingStoneController : MonoBehaviour
 
     public void OnSweep(InputAction.CallbackContext context)
     {
-        var xValue = context.ReadValue<Vector2>().x;
+        var yValue = context.ReadValue<Vector2>().y;
 
-        if (_lastXValue < xValue)       // to the right
+        if (_lastYValue < yValue)       // to the right
         {
             Sweep(SweepDirection.Right);
         }
-        else if (_lastXValue > xValue)  // to the left
+        else if (_lastYValue > yValue)  // to the left
         {
             Sweep(SweepDirection.Left);
         }
