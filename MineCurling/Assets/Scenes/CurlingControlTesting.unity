@@ -732,10 +732,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 620807882714892829, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 81c87099258bf4249ae29721ad435c41, type: 2}
     - target: {fileID: 2968748807862178024, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
       propertyPath: m_Name
       value: CurlingsStone
