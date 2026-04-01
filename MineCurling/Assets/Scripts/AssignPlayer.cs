@@ -1,8 +1,13 @@
 using UnityEngine;
 using Unity.Cinemachine;
+using System.Collections.Generic;
+using NUnit.Framework;
+using Unity.VisualScripting;
 
 public class AssignPlayer : MonoBehaviour
 {
+    [SerializeField]
+    static private List<Material> _colors;
     void Start()
     {
         var targetGroup = GameObject.Find("MainCamera").transform.Find("Target Group");
@@ -20,5 +25,12 @@ public class AssignPlayer : MonoBehaviour
         {
             lookAhead.AssignTarget(this.transform);
         }
+
+        SetColor();
+    }
+
+    public void SetColor()
+    {
+        
     }
 }
