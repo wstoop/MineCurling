@@ -624,6 +624,7 @@ GameObject:
   - component: {fileID: 2040085830}
   - component: {fileID: 2040085829}
   - component: {fileID: 2040085828}
+  - component: {fileID: 2040085832}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -724,6 +725,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &2040085832
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040085827}
+  serializedVersion: 5
+  m_Mass: 4000
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &7586488165131519278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -733,12 +761,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1650824773496912693, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
+      propertyPath: m_Mass
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1650824773496912693, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1650824773496912693, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
       propertyPath: m_Interpolate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1650824773496912693, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2968748807862178024, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
       propertyPath: m_Name
       value: CurlingsStone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196496681799910015, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
+      propertyPath: _addedAngularVelocity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317869081652716848, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7705157667033102229, guid: ed3e4bd5d11af1e4dbfd2ade1fbe13cf, type: 3}
       propertyPath: m_LocalPosition.x

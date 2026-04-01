@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-[RequireComponent(typeof(Collider), typeof(Rigidbody), typeof(PlayerInput))]
+[RequireComponent(typeof(BoxCollider), typeof(Rigidbody), typeof(PlayerInput))]
 public class CurlingStoneController : MonoBehaviour
 {
     [SerializeField]
@@ -48,7 +48,7 @@ public class CurlingStoneController : MonoBehaviour
             bounceCombine = PhysicsMaterialCombine.Multiply
         };
 
-        _collider = GetComponent<Collider>();
+        _collider = GetComponent<BoxCollider>();
 
         if (_collider != null)
         {
@@ -59,6 +59,15 @@ public class CurlingStoneController : MonoBehaviour
         _rigidbody.linearVelocity = transform.forward * _initialSpeed;
     }
 
+    private void FixedUpdate()
+    {
+        Vector3 noGrav = new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z);
+
+        var newVelocity = noGrav.magnitude * _rigidbody.transform.forward;
+
+        _rigidbody.linearVelocity = new Vector3(newVelocity.x, _rigidbody.linearVelocity.y, newVelocity.z);
+    }
+
     private void Update()
     {
         if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold)
@@ -67,11 +76,7 @@ public class CurlingStoneController : MonoBehaviour
         }
 
 
-        Vector3 noGrav = new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z);
-
-        var newVelocity = noGrav.magnitude * _rigidbody.transform.forward;
-
-        _rigidbody.linearVelocity = new Vector3(newVelocity.x, _rigidbody.linearVelocity.y, newVelocity.z);
+        
     }
 
     public void OnSweep(InputAction.CallbackContext context)
@@ -189,5 +194,24 @@ public class CurlingStoneController : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(transform.position, transform.position + _rigidbody.linearVelocity.normalized);
         }
+    }
+
+    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer != 11) return;
+
+        var  dir = Vector3.Reflect(_rigidbody.linearVelocity, collision.contacts[0].normal);
+
+        dir.y = 0f;
+        dir.Normalize();
+
+        transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+
+        _rigidbody.linearVelocity = dir * _minimumVelocityThreshold;
+        //_rigidbody.angularVelocity = Vector3.zero;
+
+        transform.position += collision.contacts[0].normal * 10f;
     }
 }
