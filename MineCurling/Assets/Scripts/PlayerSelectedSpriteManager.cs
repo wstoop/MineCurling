@@ -27,6 +27,7 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 0;
+        _startgameImage.SetActive(false);
         _inputManager = FindFirstObjectByType<PlayerInputManager>();
         _inputManager.onPlayerJoined += AddPlayer;
         foreach (var sprite in _sprites)
@@ -44,6 +45,7 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
     {
         _startgameImage.SetActive(true);
         buttonApressed.action.performed += ctx => StartGame();
+
         _playerCount++;
         _spritesImages[_playerCount - 1].enabled = false;
         _joinedSpritesImages[_playerCount - 1].enabled = true;
