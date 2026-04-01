@@ -35,6 +35,14 @@ public class CurlingStoneController : MonoBehaviour
     private float _lastSweepTime = 0f;
     private float _sweepCooldown = 0.5f;
 
+    private bool _isStoppable = true;
+
+    public bool IsStoppable
+    {
+        get => _isStoppable;
+        set => _isStoppable = value;
+    }
+
     public Action<SweepDirection> OnSweepCallback { get; set; }
     public Action<TurnDirection> OnTurnCallback { get; set; }
 
@@ -60,7 +68,7 @@ public class CurlingStoneController : MonoBehaviour
         }
 
         _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.linearVelocity = transform.forward * _initialSpeed;
+        //_rigidbody.linearVelocity = transform.forward * _initialSpeed;
     }
 
     private void FixedUpdate()
@@ -74,7 +82,7 @@ public class CurlingStoneController : MonoBehaviour
 
     private void Update()
     {
-        if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold)
+        if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold && !_isStoppable)
         {
             _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _minimumVelocityThreshold;
         }
