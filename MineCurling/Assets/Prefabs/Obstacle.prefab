@@ -52,6 +52,8 @@ MonoBehaviour:
   _rotationSpeed: 50
   _lifeTime: 20
   _hasLifetime: 1
+  _jumpSpeed: 5
+  _jumpHeight: 2.7
 --- !u!65 &-8204616492686289435
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 203f6de756e75094289a99db3b24fefe
+guid: 33a3bd047be4ddd41b8fcd4c85a72a21
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,51 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RockGreen_0
+      name: RockDeadscreen_0
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 165
+        width: 456
+        height: 895
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b390e0c166626854f9f742a19f5abf7c
+      internalID: -666562709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockDeadscreen_1
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 164
+        width: 456
+        height: 895
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dac6f5e6cf99526468ef90d8f2537510
+      internalID: 558420324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockDeadscreen_2
       rect:
         serializedVersion: 2
         x: 979
@@ -125,8 +169,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56f260a382b10924f9fc5333670d338c
-      internalID: 118961556
+      spriteID: ba552eb4aa1d44146b6c4c538d754e11
+      internalID: 312609235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockDeadscreen_3
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 161
+        width: 455
+        height: 895
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40860ed0a6851e14a9bb54607e841b01
+      internalID: 2030819915
       vertices: []
       indices: 
       edges: []
@@ -135,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: bc675a8c106d49b4d8cdb0a437ea9568
     internalID: 0
     vertices: []
     indices: 
@@ -147,7 +213,10 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      RockGreen_0: 118961556
+      RockDeadscreen_0: -666562709
+      RockDeadscreen_1: 558420324
+      RockDeadscreen_2: 312609235
+      RockDeadscreen_3: 2030819915
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
