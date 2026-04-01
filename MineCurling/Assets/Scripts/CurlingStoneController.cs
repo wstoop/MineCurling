@@ -32,6 +32,8 @@ public class CurlingStoneController : MonoBehaviour
     private float _currentAngle = 0.0f;
     private Vector2 _lastTurnInput = Vector2.zero;
     private SweepDirection _lastDirection = SweepDirection.None;
+    private float _lastSweepTime = 0f;
+    private float _sweepCooldown = 0.5f;
 
     public Action<SweepDirection> OnSweepCallback { get; set; }
     public Action<TurnDirection> OnTurnCallback { get; set; }
@@ -77,8 +79,21 @@ public class CurlingStoneController : MonoBehaviour
             _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _minimumVelocityThreshold;
         }
 
+        TryDisableSweep();
+    }
 
-        
+    private void TryDisableSweep()
+    {
+        if (_lastDirection == SweepDirection.None) return;
+        _lastSweepTime -= Time.deltaTime;
+
+        if(_lastSweepTime <= 0f)
+        {
+            _lastDirection = SweepDirection.None;
+            _lastSweepTime = _sweepCooldown;
+            OnSweepCallback?.Invoke(SweepDirection.None);
+            //Debug.Log("Sweep disabled");
+        }
     }
 
     public void OnSweep(InputAction.CallbackContext context)
@@ -154,6 +169,7 @@ public class CurlingStoneController : MonoBehaviour
         _rigidbody.linearVelocity *= _sweepForceMultiplier;
         _lastDirection = direction;
 
+        _lastSweepTime = _sweepCooldown;
         OnSweepCallback?.Invoke(direction);
     }
 
@@ -163,12 +179,12 @@ public class CurlingStoneController : MonoBehaviour
         {
             case TurnDirection.CW:
                 //Debug.Log("Turning Clockwise");
-
-                _rigidbody.AddTorque(Vector3.up * _addedAngularVelocity, ForceMode.Force);
+                _rigidbody.AddTorque(Vector3.up * _addedAngularVelocity, ForceMode.Acceleration);
                 break;
+
             case TurnDirection.CCW:
                 //Debug.Log("Turning Counter-Clockwise");
-                _rigidbody.AddTorque(Vector3.down * _addedAngularVelocity, ForceMode.Force);
+                _rigidbody.AddTorque(Vector3.down * _addedAngularVelocity, ForceMode.Acceleration);
                 break;
         }
 
@@ -198,7 +214,8 @@ public class CurlingStoneController : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
 
-        _rigidbody.angularVelocity *= 0.75f;
+        //_rigidbody.angularVelocity *= 0.75f;
+        _rigidbody.angularVelocity = Vector3.zero;
 
         _rigidbody.angularVelocity = new Vector3(0f, 0f, 0f);
     }
