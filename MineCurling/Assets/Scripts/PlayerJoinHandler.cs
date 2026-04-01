@@ -55,6 +55,8 @@ public class PlayerJoinHandler : MonoBehaviour
         if (_broomMaterials[input.playerIndex] == null) return;
         var meshRenderBroom = input.transform.Find("Visuals").Find("Broom").GetComponent<MeshRenderer>();
         meshRenderBroom.sharedMaterial = _broomMaterials[input.playerIndex];
+
+        rb.gameObject.layer = 6 + input.playerIndex;
     }
 }
  
