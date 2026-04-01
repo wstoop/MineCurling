@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class EndPoint : MonoBehaviour
 {
     private int _givenPoints = 3;
+    private int _playerCount = 4;
 
     public struct EndPointData
     {
@@ -20,6 +21,13 @@ public class EndPoint : MonoBehaviour
     [SerializeField] TextMeshProUGUI _blueText;
     [SerializeField] TextMeshProUGUI _greenText;
     [SerializeField] TextMeshProUGUI _yellowText;
+
+    private GameMode _gameMode;
+
+    private void Awake()
+    {
+        _gameMode = GameObject.Find("GameMode").GetComponent<GameMode>();
+    }
 
     public void AddPoint(LayerMask layer)
     {
@@ -70,11 +78,14 @@ public class EndPoint : MonoBehaviour
     public void ResetPoints()
     {
         _givenPoints = 3;
+        _playerCount = 4;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (_givenPoints == 0) return;
+
+        --_playerCount;
 
         switch (other.gameObject.layer)
         {
@@ -100,5 +111,11 @@ public class EndPoint : MonoBehaviour
             other.gameObject.GetComponent<PlayerInput>().DeactivateInput();
         }
         UpdateText();
+
+        if(_playerCount == 0)
+        {
+            ResetPoints();
+            _gameMode.ReloadScene();
+        }
     }
 }
