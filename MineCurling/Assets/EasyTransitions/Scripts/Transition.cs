@@ -17,7 +17,7 @@ namespace EasyTransition
         public Material multiplyColorMaterial;
         public Material additiveColorMaterial;
 
-        bool hasTransitionTriggeredOnce;
+        public bool hasTransitionTriggeredOnce;
 
         private void Start()
         {
