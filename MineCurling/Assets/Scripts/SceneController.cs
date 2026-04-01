@@ -1,24 +1,57 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    public void LoadScene(string sceneName)
+    [SerializeField]
+    List<GameObject> _startScreenElements;
+    [SerializeField]
+    List<GameObject> _registerScreenElements;
+    [SerializeField]
+    List<GameObject> _gameScreenElements;
+    [SerializeField]
+    List<GameObject> _endScreenElements;
+
+    public enum ScreenType
     {
-        SceneManager.LoadScene(sceneName);
-    }
-    public void LoadScene(int sceneIndex)
-    {
-        SceneManager.LoadScene(sceneIndex);
-    }
-    public void LoadSceneAsync(string sceneName)
-    {
-        SceneManager.LoadSceneAsync(sceneName);
+        StartScreen,
+        RegisterScreen,
+        GameScreen,
+        EndScreen
     }
 
-    public void ReloadScene()
+    private void SetActiveElements(List<GameObject> elements, bool state)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        foreach (var element in elements)
+        {
+            element.SetActive(state);
+        }
+    }
+    public void SetCurrentScreen(string screenName)
+    {
+        ScreenType screen = (ScreenType)System.Enum.Parse(typeof(ScreenType), screenName);
+
+        SetActiveElements(_startScreenElements, false);
+        SetActiveElements(_registerScreenElements, false);
+        SetActiveElements(_gameScreenElements, false);
+        SetActiveElements(_endScreenElements, false);
+        switch (screen)
+        {
+            case ScreenType.StartScreen:
+                SetActiveElements(_startScreenElements, true);
+                break;
+            case ScreenType.RegisterScreen:
+                SetActiveElements(_registerScreenElements, true);
+                break;
+            case ScreenType.GameScreen:
+                SetActiveElements(_gameScreenElements, true);
+                break;
+            case ScreenType.EndScreen:
+                SetActiveElements(_endScreenElements, true);
+                break;
+        }
     }
 
     public void QuitGame()
