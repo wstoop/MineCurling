@@ -29,7 +29,8 @@ public class MineBehaviour : MonoBehaviour
             if (collider.gameObject.CompareTag("Player") && collider.gameObject.TryGetComponent(out rb))
             {
                 Vector3 direction = (rb.transform.position - transform.position).normalized;
-                rb.AddForce(direction * _force, ForceMode.Impulse);
+                direction.y = 0;
+                rb.AddForce(direction * _force, ForceMode.VelocityChange);
             }
         }
         if (_explosionVFX != null)
