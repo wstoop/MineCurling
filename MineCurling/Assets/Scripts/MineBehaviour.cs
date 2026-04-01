@@ -37,7 +37,7 @@ public class MineBehaviour : MonoBehaviour
             }
             if(_explosionVFX != null)
                 Instantiate(_explosionVFX, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+        gameObject.SetActive(false);
 
     }
 
