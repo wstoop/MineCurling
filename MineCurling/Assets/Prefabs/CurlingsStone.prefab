@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 1650824773496912693}
   - component: {fileID: 7098938486270735340}
   - component: {fileID: 6196496681799910015}
+  - component: {fileID: 752492306035565941}
   m_Layer: 0
   m_Name: CurlingsStone
   m_TagString: Player
@@ -78,10 +79,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3063
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 1
@@ -114,7 +115,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &7098938486270735340
 MonoBehaviour:
@@ -258,9 +259,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b432fa23a46780f4590fa7996aa105db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurlingStoneController
+  _initialSpeed: 5
   _sweepForceMultiplier: 1.05
   _minimumVelocityThreshold: 1
   _addedAngularVelocity: 0.5
+--- !u!136 &752492306035565941
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968748807862178024}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 3063
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 0
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1001 &4446098266378310897
 PrefabInstance:
   m_ObjectHideFlags: 0
