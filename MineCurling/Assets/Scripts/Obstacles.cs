@@ -27,6 +27,7 @@ public class Obstacles : MonoBehaviour
     private bool isJumping;
     private bool hasJumped;
 
+    const string CALLONHIT = "OnHit";
     private void Update()
     {
         if(_hasLifetime)
@@ -92,8 +93,16 @@ public class Obstacles : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<Rigidbody>().linearVelocity /= 2;
-            _explosionVFX.SendEvent("OnHit");
-            _explosionVFX.transform.position = transform.position;
+            if(_explosionVFX != null)
+            {
+                var temp = Instantiate(_explosionVFX, transform.position, Quaternion.identity);
+                
+                if(temp == null)
+                {
+                    UnityEngine.Debug.Log("null");
+                }
+                
+            }
             
 
             Destroy(gameObject);
