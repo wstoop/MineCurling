@@ -87,6 +87,12 @@ public class CurlingStoneController : MonoBehaviour
             _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _minimumVelocityThreshold;
         }
 
+        if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold && _isStoppable)
+        {
+            _rigidbody.linearVelocity = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
+        }
+
         TryDisableSweep();
     }
 
