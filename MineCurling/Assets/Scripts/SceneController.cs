@@ -1,18 +1,21 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
     [SerializeField]
-    List<GameObject> _startScreenElements;
+    private PlayerInputManager _inputManager;
     [SerializeField]
-    List<GameObject> _registerScreenElements;
+    private List<GameObject> _startScreenElements;
     [SerializeField]
-    List<GameObject> _gameScreenElements;
+    private List<GameObject> _registerScreenElements;
     [SerializeField]
-    List<GameObject> _endScreenElements;
+    private List<GameObject> _gameScreenElements;
+    [SerializeField]
+    private List<GameObject> _endScreenElements;
 
     public enum ScreenType
     {
@@ -24,6 +27,12 @@ public class SceneController : MonoBehaviour
 
     private void Awake()
     {
+        _inputManager.enabled = false;
+        SetActiveElements(_registerScreenElements, false);
+        SetActiveElements(_gameScreenElements, false);
+        SetActiveElements(_endScreenElements, false);
+
+        SetActiveElements(_startScreenElements, true);
         Time.timeScale = 0;
     }
 
@@ -38,6 +47,7 @@ public class SceneController : MonoBehaviour
     {
         ScreenType screen = (ScreenType)System.Enum.Parse(typeof(ScreenType), screenName);
 
+        //_inputManager.enabled = false;
         SetActiveElements(_startScreenElements, false);
         SetActiveElements(_registerScreenElements, false);
         SetActiveElements(_gameScreenElements, false);
@@ -49,6 +59,7 @@ public class SceneController : MonoBehaviour
                 break;
             case ScreenType.RegisterScreen:
                 SetActiveElements(_registerScreenElements, true);
+                _inputManager.enabled = true;
                 break;
             case ScreenType.GameScreen:
                 SetActiveElements(_gameScreenElements, true);
