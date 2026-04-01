@@ -22,6 +22,11 @@ public class SceneController : MonoBehaviour
         EndScreen
     }
 
+    private void Awake()
+    {
+        Time.timeScale = 0;
+    }
+
     private void SetActiveElements(List<GameObject> elements, bool state)
     {
         foreach (var element in elements)
@@ -47,6 +52,7 @@ public class SceneController : MonoBehaviour
                 break;
             case ScreenType.GameScreen:
                 SetActiveElements(_gameScreenElements, true);
+                Time.timeScale = 1f;
                 break;
             case ScreenType.EndScreen:
                 SetActiveElements(_endScreenElements, true);
