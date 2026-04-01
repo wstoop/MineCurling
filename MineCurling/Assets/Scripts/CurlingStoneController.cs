@@ -200,18 +200,26 @@ public class CurlingStoneController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer != 11) return;
+        //if (collision.gameObject != gameObject) return;
 
-        var  dir = Vector3.Reflect(_rigidbody.linearVelocity, collision.contacts[0].normal);
+        _rigidbody.angularVelocity = new Vector3(0f, _rigidbody.angularVelocity.y, 0f);
+
+        Debug.Log(_rigidbody.angularVelocity);
+
+        var  dir = Vector3.Reflect(_rigidbody.linearVelocity.normalized, collision.contacts[0].normal);
 
         dir.y = 0f;
         dir.Normalize();
 
         transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
 
-        _rigidbody.linearVelocity = dir * _minimumVelocityThreshold;
-        //_rigidbody.angularVelocity = Vector3.zero;
 
-        transform.position += collision.contacts[0].normal * 10f;
+
+        _rigidbody.angularVelocity *= 0.75f;
+
+
+        transform.position += collision.contacts[0].normal * 0.05f;
+
+        Debug.Log(_rigidbody.angularVelocity);
     }
 }
