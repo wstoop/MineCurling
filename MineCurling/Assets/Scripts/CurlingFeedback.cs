@@ -21,7 +21,6 @@ public class CurlingFeedback : MonoBehaviour
     private Transform _rightSweepTarget = null;
 
     private Transform _currentTarget = null;
-
     private Vector3 _initialStoneRotation = Vector3.zero;
     private Rigidbody _body = null;
 
@@ -75,18 +74,23 @@ public class CurlingFeedback : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+    }
+
     private void Update()
     {
         MoveBroom();
-
         DoSpinnySpin();
     }
 
     private void DoSpinnySpin()
     {
-        _initialStoneRotation.y += Mathf.Deg2Rad * _body.angularVelocity.y * Time.deltaTime;
+        _initialStoneRotation.y += 100f * MathF.Sign(_body.angularVelocity.y) * Time.deltaTime;
 
         _stone.transform.rotation = Quaternion.Euler(_initialStoneRotation);
+
+        Debug.Log($"Angular Velocity: {_body.angularVelocity.y}, Stone Rotation Y: {_stone.transform.rotation.eulerAngles.y}");
     }
 
     private void MoveBroom()
