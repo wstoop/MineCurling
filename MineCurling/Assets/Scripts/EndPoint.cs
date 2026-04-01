@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EndPoint : MonoBehaviour
 {
@@ -79,24 +80,25 @@ public class EndPoint : MonoBehaviour
         {
             case 6:
                 _data.RedPoints += _givenPoints;
-                --_givenPoints;
-                UpdateText();
                 break;
             case 7:
                 _data.BluePoints += _givenPoints;
-                --_givenPoints;
-                UpdateText();
                 break;
             case 8:
                 _data.GreenPoints += _givenPoints;
-                --_givenPoints;
-                UpdateText();
                 break;
             case 9:
                 _data.YellowPoints += _givenPoints;
-                --_givenPoints;
-                UpdateText();
                 break;
         }
+
+        --_givenPoints;
+        var curlingStone = other.gameObject.GetComponent<CurlingStoneController>();
+        if (curlingStone != null)
+        {
+            curlingStone.IsStoppable = true;
+            other.gameObject.GetComponent<PlayerInput>().DeactivateInput();
+        }
+        UpdateText();
     }
 }
