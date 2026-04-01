@@ -7,6 +7,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Collider), typeof(Rigidbody), typeof(PlayerInput))]
 public class CurlingStoneController : MonoBehaviour
 {
+    [SerializeField]
+    private float _initialSpeed = 5f;
+
     [Header("Sweep Params")]
     [SerializeField, Min(1f)]
     private float _sweepForceMultiplier = 1.1f;
@@ -40,9 +43,9 @@ public class CurlingStoneController : MonoBehaviour
             name = "CurlingStonePhysicsMaterial",
             dynamicFriction = 0.6f,
             staticFriction = 0.6f,
-            bounciness = 0.0f,
+            bounciness = 1.0f,
             frictionCombine = PhysicsMaterialCombine.Minimum,
-            bounceCombine = PhysicsMaterialCombine.Minimum
+            bounceCombine = PhysicsMaterialCombine.Multiply
         };
 
         _collider = GetComponent<Collider>();
@@ -53,13 +56,14 @@ public class CurlingStoneController : MonoBehaviour
         }
 
         _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.linearVelocity = transform.forward * _initialSpeed;
     }
 
     private void Update()
     {
-        if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold * _minimumVelocityThreshold)
+        if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold)
         {
-            _rigidbody.AddForce(Vector3.forward * _minimumVelocityThreshold, ForceMode.Impulse);
+            _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _minimumVelocityThreshold;
         }
 
 

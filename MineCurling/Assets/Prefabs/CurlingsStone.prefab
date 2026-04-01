@@ -97,7 +97,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2968748807862178024}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 40
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CurlingStoneController
   _sweepForceMultiplier: 1.05
   _minimumVelocityThreshold: 1
-  _addedAngularVelocity: 0.1
+  _addedAngularVelocity: 0.5
 --- !u!1001 &4446098266378310897
 PrefabInstance:
   m_ObjectHideFlags: 0
