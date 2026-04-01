@@ -40,6 +40,10 @@ public class CurlingFeedback : MonoBehaviour
         {
             Debug.LogError("Stone GameObject reference is not set in the inspector.");
         }
+        else
+        {
+            _initialStoneRotation = _stone.transform.rotation.eulerAngles;
+        }
 
         if (_leftSweepTarget == null)
         {
@@ -75,10 +79,12 @@ public class CurlingFeedback : MonoBehaviour
     {
         MoveBroom();
 
-        if (_initialStoneRotation == Vector3.zero && _stone != null)
-        {
-            _initialStoneRotation = _stone.transform.rotation.eulerAngles;
-        }
+        DoSpinnySpin();
+    }
+
+    private void DoSpinnySpin()
+    {
+        _initialStoneRotation.y += Mathf.Deg2Rad * _body.angularVelocity.y * Time.deltaTime;
 
         _stone.transform.rotation = Quaternion.Euler(_initialStoneRotation);
     }
