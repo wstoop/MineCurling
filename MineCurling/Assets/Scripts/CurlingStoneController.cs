@@ -35,7 +35,7 @@ public class CurlingStoneController : MonoBehaviour
     private float _lastSweepTime = 0f;
     private float _sweepCooldown = 0.5f;
 
-    private bool _isStoppable = true;
+    private bool _isStoppable = false;
 
     public bool IsStoppable
     {
