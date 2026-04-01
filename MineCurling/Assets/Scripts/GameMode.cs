@@ -23,6 +23,7 @@ public class GameMode : MonoBehaviour
         _currentFrequency = _waveStartFrequency;
 
         Invoke(STARTNEWWAVE_METHOD, _firstWaveStart);
+        MineSpawnManager.Instance.SpawnMine();
     }
 
     const string STARTNEWWAVE_METHOD = "StartNewWave";
