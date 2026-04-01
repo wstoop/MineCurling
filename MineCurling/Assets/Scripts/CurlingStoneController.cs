@@ -82,7 +82,7 @@ public class CurlingStoneController : MonoBehaviour
 
     private void Update()
     {
-        if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold && !_isStoppable)
+        if ((_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold) && !_isStoppable)
         {
             _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _minimumVelocityThreshold;
         }
