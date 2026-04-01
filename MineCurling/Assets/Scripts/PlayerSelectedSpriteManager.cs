@@ -48,17 +48,14 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
                 _joinedSpritesImages.Add(joinedSprite.GetComponent<Image>());
             }
         }
-        if (_playerCount < 4 && _playerCount > 0)
+        if (_playerCount == 1)
         {
-            if (_playerCount == 1)
-            {
-                _startgameImage.SetActive(true);
-                buttonApressed.action.performed += ctx => gameObject.SetActive(false);
-            }
-            
-            _spritesImages[_playerCount - 1].enabled = false;
-            _joinedSpritesImages[_playerCount - 1].enabled = true;
+            _startgameImage.SetActive(true);
+            buttonApressed.action.performed += ctx => gameObject.SetActive(false);
         }
         _playerCount++;
+        _spritesImages[_playerCount - 1].enabled = false;
+        _joinedSpritesImages[_playerCount - 1].enabled = true;
+
     }
 }
