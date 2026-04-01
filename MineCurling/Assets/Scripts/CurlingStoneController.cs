@@ -219,6 +219,8 @@ public class CurlingStoneController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.CompareTag("Sheet")) return;
+
         _rigidbody.angularVelocity = new Vector3(0f, _rigidbody.angularVelocity.y, 0f);
 
         var  dir = Vector3.Reflect(_rigidbody.linearVelocity.normalized, collision.contacts[0].normal);
