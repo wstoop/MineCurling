@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 6196496681799910015}
   - component: {fileID: 752492306035565941}
   - component: {fileID: 1419675275908784048}
+  - component: {fileID: 6368949771125687898}
   m_Layer: 0
   m_Name: CurlingsStone
   m_TagString: Player
@@ -306,6 +307,18 @@ MonoBehaviour:
   _broomSpeed: 25
   _leftSweepTarget: {fileID: 1256380568368653488}
   _rightSweepTarget: {fileID: 4311177713797230662}
+--- !u!114 &6368949771125687898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968748807862178024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d5209b17c9a804fb490f7b251c3876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AssignPlayer
 --- !u!1 &5874299008261464531
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +429,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5f525733f6eb4564fbf1ffa8e7589004, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b4219dde66b7d2c48ad1121a44fb3479, type: 2}
     - target: {fileID: 919132149155446097, guid: 5f525733f6eb4564fbf1ffa8e7589004, type: 3}
       propertyPath: m_Name
       value: CurlingRockEdited
