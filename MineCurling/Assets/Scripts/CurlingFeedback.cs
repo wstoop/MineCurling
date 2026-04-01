@@ -86,11 +86,9 @@ public class CurlingFeedback : MonoBehaviour
 
     private void DoSpinnySpin()
     {
-        _initialStoneRotation.y += 100f * MathF.Sign(_body.angularVelocity.y) * Time.deltaTime;
+        _initialStoneRotation.y += 1000f * _body.angularVelocity.y * Time.deltaTime;
 
         _stone.transform.rotation = Quaternion.Euler(_initialStoneRotation);
-
-        Debug.Log($"Angular Velocity: {_body.angularVelocity.y}, Stone Rotation Y: {_stone.transform.rotation.eulerAngles.y}");
     }
 
     private void MoveBroom()
