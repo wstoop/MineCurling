@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EndPoint : MonoBehaviour
 {
-    private static int _givenPoints = 3;
+    private int _givenPoints = 3;
 
     public struct EndPointData
     {
