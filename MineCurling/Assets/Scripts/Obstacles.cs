@@ -1,11 +1,12 @@
 using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Obstacles : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _explosionVFX;
+    private VisualEffect _explosionVFX;
 
     [SerializeField]
     private float _movementSpeed;
@@ -91,7 +92,10 @@ public class Obstacles : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<Rigidbody>().linearVelocity /= 2;
-            Instantiate(_explosionVFX, transform.position, Quaternion.identity);
+            _explosionVFX.SendEvent("OnHit");
+            _explosionVFX.transform.position = transform.position;
+            
+
             Destroy(gameObject);
         }
     }

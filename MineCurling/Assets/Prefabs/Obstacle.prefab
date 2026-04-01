@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23684b4a5b6a6e14eae45ff6dc67d08e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacles
-  _explosionVFX: {fileID: 5292527496539588336, guid: 90165964d11f0a54aafe2dfb1fbe6f45, type: 3}
+  _explosionVFX: {fileID: 7494498202212316934, guid: 75fc8089a9d7f9446bdd3d5d7c52a0b8, type: 3}
   _movementSpeed: 2
   _rotationSpeed: 50
   _lifeTime: 20
