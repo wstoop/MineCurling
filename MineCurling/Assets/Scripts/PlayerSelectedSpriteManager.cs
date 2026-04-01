@@ -19,11 +19,15 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
     [SerializeField]
     private InputActionReference buttonApressed;
 
+    private PlayerInputManager _inputManager;
+
     private List<Image> _spritesImages = new List<Image>();
     private List<Image> _joinedSpritesImages = new List<Image>();
     private int _playerCount = 0;
-    private void OnValidate()
+    private void Awake()
     {
+        _inputManager = FindFirstObjectByType<PlayerInputManager>();
+        _inputManager.onPlayerJoined += AddPlayer;
         foreach (var sprite in _sprites)
         {
             _spritesImages.Add(sprite.GetComponent<Image>());
@@ -35,24 +39,10 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
          
     }
 
-    public void AddPlayer()
+    public void AddPlayer(PlayerInput input)
     {
-        if(_spritesImages.Count == 0 || _joinedSpritesImages.Count == 0)
-        {
-            foreach (var sprite in _sprites)
-            {
-                _spritesImages.Add(sprite.GetComponent<Image>());
-            }
-            foreach (var joinedSprite in _joinedSprites)
-            {
-                _joinedSpritesImages.Add(joinedSprite.GetComponent<Image>());
-            }
-        }
-        if (_playerCount == 1)
-        {
-            _startgameImage.SetActive(true);
-            buttonApressed.action.performed += ctx => gameObject.SetActive(false);
-        }
+        _startgameImage.SetActive(true);
+        buttonApressed.action.performed += ctx => gameObject.SetActive(false);
         _playerCount++;
         _spritesImages[_playerCount - 1].enabled = false;
         _joinedSpritesImages[_playerCount - 1].enabled = true;

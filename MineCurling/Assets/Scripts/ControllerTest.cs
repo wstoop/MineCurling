@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(BoxCollider), typeof(Rigidbody), typeof(PlayerInput))]
-public class ControllerTest : MonoBehaviour
+public class Controllertest : MonoBehaviour
 {
     [SerializeField]
     private float _initialSpeed = 5f;
@@ -63,7 +63,7 @@ public class ControllerTest : MonoBehaviour
     {
         Vector3 noGrav = new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z);
 
-        var newVelocity = noGrav.magnitude * _rigidbody.linearVelocity.normalized;
+        var newVelocity = noGrav.magnitude * _rigidbody.transform.forward;
 
         _rigidbody.linearVelocity = new Vector3(newVelocity.x, _rigidbody.linearVelocity.y, newVelocity.z);
     }
@@ -74,9 +74,6 @@ public class ControllerTest : MonoBehaviour
         {
             _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _minimumVelocityThreshold;
         }
-
-
-
     }
 
     public void OnSweep(InputAction.CallbackContext context)
@@ -200,9 +197,7 @@ public class ControllerTest : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //if (collision.gameObject != gameObject) return;
-
-        _rigidbody.angularVelocity = new Vector3(0f, _rigidbody.angularVelocity.y, 0f);
+        if (collision.gameObject == gameObject) return;
 
         Debug.Log(_rigidbody.angularVelocity);
 
@@ -213,12 +208,7 @@ public class ControllerTest : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
 
-
-
-        _rigidbody.angularVelocity *= 0.75f;
-
-
-        transform.position += collision.contacts[0].normal * 0.05f;
+        //_rigidbody.angularVelocity = new Vector3(0f, 0f, 0f);
 
         Debug.Log(_rigidbody.angularVelocity);
     }
