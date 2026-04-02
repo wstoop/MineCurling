@@ -17575,6 +17575,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4242562351403320817, guid: 4e0032a7f864e7f40b3dd9223b181db1, type: 3}
   m_PrefabInstance: {fileID: 1065234140}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1066375568 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7054321850674843574, guid: 3365c1c5afb16fb44a57e6602f89efc7, type: 3}
+  m_PrefabInstance: {fileID: 1554137556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1066375570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066375568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e930845af52de42a629eb4d4cbac50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  noice: {fileID: 1066375571}
+--- !u!114 &1066375571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066375568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 1
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &1070128485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25479,6 +25514,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7054321850674843574, guid: 3365c1c5afb16fb44a57e6602f89efc7, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 8690782053217977248, guid: 3365c1c5afb16fb44a57e6602f89efc7, type: 3}
       propertyPath: m_Name
       value: MainCamera
@@ -25486,7 +25525,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7054321850674843574, guid: 3365c1c5afb16fb44a57e6602f89efc7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1066375571}
+    - targetCorrespondingSourceObject: {fileID: 7054321850674843574, guid: 3365c1c5afb16fb44a57e6602f89efc7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1066375570}
   m_SourcePrefab: {fileID: 100100000, guid: 3365c1c5afb16fb44a57e6602f89efc7, type: 3}
 --- !u!4 &1554137557 stripped
 Transform:

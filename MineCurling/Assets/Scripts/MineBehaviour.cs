@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MineBehaviour : MonoBehaviour
@@ -11,7 +12,20 @@ public class MineBehaviour : MonoBehaviour
     private GameObject _explosionVFX;
     [SerializeField]
     private GameObject _explosionDecal;
+    [SerializeField]
+    CinemachineShake _shake;
+    [SerializeField]
+    private float _shakeIntensity;
+    [SerializeField]
+    private float _shakeDuration;
 
+    private void Awake()
+    {
+        
+
+
+        _shake = GameObject.FindAnyObjectByType<CinemachineShake>();
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -40,7 +54,7 @@ public class MineBehaviour : MonoBehaviour
             Instantiate(_explosionDecal, transform.position, Quaternion.identity);
         }
         gameObject.SetActive(false);
-
+        _shake.ShakeCamera(_shakeDuration,_shakeIntensity);
     }
 
     private void OnDrawGizmos()

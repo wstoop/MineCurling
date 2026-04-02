@@ -125,3 +125,6 @@ MonoBehaviour:
   _radius: 3
   _explosionVFX: {fileID: 5292527496539588336, guid: 90165964d11f0a54aafe2dfb1fbe6f45, type: 3}
   _explosionDecal: {fileID: 111526510945603273, guid: 0ad1730fc8e62514a84e9b4b3b909bf2, type: 3}
+  _shake: {fileID: 0}
+  _shakeIntensity: 0.3
+  _shakeDuration: 7
