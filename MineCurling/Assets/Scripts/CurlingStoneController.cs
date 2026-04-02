@@ -127,11 +127,11 @@ public class CurlingStoneController : MonoBehaviour
     {
         var yValue = context.ReadValue<Vector2>().y;
 
-        if (_lastYValue < yValue)       // to the right
+        if (_lastYValue > yValue)       // to the right
         {
             Sweep(SweepDirection.Right);
         }
-        else if (_lastYValue > yValue)  // to the left
+        else if (_lastYValue < yValue)  // to the left
         {
             Sweep(SweepDirection.Left);
         }
