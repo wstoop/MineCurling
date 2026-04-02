@@ -19,12 +19,20 @@ public class MineBehaviour : MonoBehaviour
     [SerializeField]
     private float _shakeDuration;
 
+    [SerializeField]
+    private AudioSource _beep;
+
     private void Awake()
     {
-        
-
-
         _shake = GameObject.FindAnyObjectByType<CinemachineShake>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _beep.Play();
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -36,6 +44,7 @@ public class MineBehaviour : MonoBehaviour
 
     private void Explode()
     {
+        _beep.Stop();
         Collider[] colliders = Physics.OverlapSphere(transform.position, _radius);
         foreach (var collider in colliders)
         {
