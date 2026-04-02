@@ -119,7 +119,7 @@ public class CurlingFeedback : MonoBehaviour
     {
         if (_slideSound == null) return;
 
-        if (_body.linearVelocity.sqrMagnitude < 0.01f)
+        if (_body.linearVelocity.sqrMagnitude < 1f || Time.timeScale == 0f)
         {
             if (_slideSound.isPlaying)
             {
@@ -127,13 +127,13 @@ public class CurlingFeedback : MonoBehaviour
             }
             return;
         }
-        
-        AdjustSlideParticle();
 
         if (!_slideSound.isPlaying)
         {
             _slideSound.Play();
         }
+
+        Debug.Log(_body.linearVelocity);
     }
 
     private void AdjustSpinParticle()
