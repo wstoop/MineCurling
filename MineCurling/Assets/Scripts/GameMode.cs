@@ -17,6 +17,11 @@ public class GameMode : MonoBehaviour
     [SerializeField]
     private float _waveFrequencyIncrement = 0.5f;
 
+    [SerializeField] GameObject _ghostRed;
+    [SerializeField] GameObject _ghostBlue;
+    [SerializeField] GameObject _ghostGreen;
+    [SerializeField] GameObject _ghostYellow;
+
     private float _currentFrequency = 0.0f;
 
     private void Awake()
@@ -55,28 +60,35 @@ public class GameMode : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
 
+
+
             switch (player.layer)
             {
                 case 6:
+                    Instantiate(_ghostRed, player.transform.position, player.transform.rotation);
                     rb.position = GameObject.Find("P1").transform.position;
                     rb.rotation = GameObject.Find("P1").transform.rotation;
                     break;
                 case 7:
+                    Instantiate(_ghostBlue, player.transform.position, player.transform.rotation);
                     rb.position = GameObject.Find("P2").transform.position;
                     rb.rotation = GameObject.Find("P2").transform.rotation;
                     break;
                 case 8:
+                    Instantiate(_ghostGreen, player.transform.position, player.transform.rotation);
                     rb.position = GameObject.Find("P3").transform.position;
                     rb.rotation = GameObject.Find("P3").transform.rotation;
                     break;
                 case 9:
+                    Instantiate(_ghostYellow, player.transform.position, player.transform.rotation);
                     rb.position = GameObject.Find("P4").transform.position;
                     rb.rotation = GameObject.Find("P4").transform.rotation;
                     break;
             }
 
-            FindFirstObjectByType<PlayerSelectedSpriteManager>().ShowEndScreen();
         }
+
+        //FindFirstObjectByType<PlayerSelectedSpriteManager>().ShowEndScreen();
 
         yield return new WaitForSeconds(3.0f);
 

@@ -84,7 +84,7 @@ public class EndPoint : MonoBehaviour
     public void ResetPoints()
     {
         _givenPoints = 3;
-        //_playerCount = FindFirstObjectByType<PlayerInputManager>().playerCount;
+        _playerCount = FindFirstObjectByType<PlayerInputManager>().playerCount;
     }
 
     private void OnTriggerEnter(Collider other)
