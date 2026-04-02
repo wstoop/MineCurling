@@ -16,7 +16,11 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
     private List<GameObject> _joinedSprites;
 
     [SerializeField]
+    private GameObject _endScreen;
+    [SerializeField]
     private GameObject _startgameImage;
+    [SerializeField]
+    private GameObject _pressYToJoin;
     [SerializeField]
     private InputActionReference buttonApressed;
 
@@ -56,8 +60,20 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
 
     private void StartGame()
     {
-        gameObject.SetActive(false);
+        var Images = GetComponentsInChildren<Transform>();
+        foreach (var image in Images)
+        {
+            if (image.gameObject == this.gameObject)
+                continue;
+            
+            image.gameObject.SetActive(false);
+        }
         Time.timeScale = 1;
+    }
+
+    public void ShowEndScreen()
+    {
+        _endScreen.SetActive(true);
     }
 
     private void Update()

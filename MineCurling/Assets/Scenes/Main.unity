@@ -7057,6 +7057,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4242562351403320817, guid: 4e0032a7f864e7f40b3dd9223b181db1, type: 3}
   m_PrefabInstance: {fileID: 599918760}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &608281093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1961576872285457647, guid: c3b85099cda3b3446a31ced6be8484ae, type: 3}
+  m_PrefabInstance: {fileID: 880741250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &610290217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11125,6 +11130,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5142202275401691806, guid: c3b85099cda3b3446a31ced6be8484ae, type: 3}
+      propertyPath: _endScreen
+      value: 
+      objectReference: {fileID: 608281093}
     - target: {fileID: 6131933923305862773, guid: c3b85099cda3b3446a31ced6be8484ae, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class EndPoint : MonoBehaviour
 {
     private int _givenPoints = 3;
-    private int _playerCount = 4;
+    private int _playerCount = 0;
 
     public struct EndPointData
     {
@@ -26,9 +26,15 @@ public class EndPoint : MonoBehaviour
 
     private void Awake()
     {
+        _playerCount = FindFirstObjectByType<PlayerInputManager>().playerCount;
+        FindFirstObjectByType<PlayerInputManager>().onPlayerJoined += IncreaseCount;
         _gameMode = GameObject.Find("GameMode").GetComponent<GameMode>();
     }
 
+    private void IncreaseCount(PlayerInput input)
+    {
+        _playerCount += 1;
+    }
     public void AddPoint(LayerMask layer)
     {
         switch(layer.value)
@@ -78,7 +84,7 @@ public class EndPoint : MonoBehaviour
     public void ResetPoints()
     {
         _givenPoints = 3;
-        _playerCount = 4;
+        //_playerCount = FindFirstObjectByType<PlayerInputManager>().playerCount;
     }
 
     private void OnTriggerEnter(Collider other)

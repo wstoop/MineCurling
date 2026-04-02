@@ -45,7 +45,7 @@ public class GameMode : MonoBehaviour
 
     private IEnumerator reloadSceneCoroutine()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(5.0f);
 
         List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
 
@@ -74,6 +74,8 @@ public class GameMode : MonoBehaviour
                     rb.rotation = GameObject.Find("P4").transform.rotation;
                     break;
             }
+
+            FindFirstObjectByType<PlayerSelectedSpriteManager>().ShowEndScreen();
         }
 
         yield return new WaitForSeconds(3.0f);
