@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
@@ -103,7 +104,12 @@ public class Obstacles : MonoBehaviour
                 }
                 
             }
-            
+
+            var audio = GetComponent<AudioSource>();
+            if(audio != null)
+            {
+               Instantiate<AudioSource>(audio, transform.position, Quaternion.identity);
+            }
 
             Destroy(gameObject);
         }

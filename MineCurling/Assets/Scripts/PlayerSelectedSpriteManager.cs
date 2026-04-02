@@ -24,6 +24,11 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
     [SerializeField]
     private InputActionReference buttonApressed;
 
+    [SerializeField]
+    private AudioSource _menuTheme;
+    [SerializeField]
+    private AudioSource _gameTheme;
+
     private PlayerInputManager _inputManager;
 
     private List<Image> _spritesImages = new List<Image>();
@@ -32,6 +37,7 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
     private bool _hasFrozenTime = false;
     private void Awake()
     {
+        _menuTheme.Play();
         _startgameImage.SetActive(false);
         _inputManager = FindFirstObjectByType<PlayerInputManager>();
         _inputManager.onPlayerJoined += AddPlayer;
@@ -68,6 +74,8 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
             
             image.gameObject.SetActive(false);
         }
+        _menuTheme.Stop();
+        _gameTheme.Play();
         Time.timeScale = 1;
     }
 
