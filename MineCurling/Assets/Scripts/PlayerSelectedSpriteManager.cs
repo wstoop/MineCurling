@@ -29,6 +29,12 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
     [SerializeField]
     private AudioSource _gameTheme;
 
+    [SerializeField]
+    private AudioSource _pop;
+
+    [SerializeField]
+    private AudioSource _horn;
+
     private PlayerInputManager _inputManager;
 
     private List<Image> _spritesImages = new List<Image>();
@@ -54,6 +60,8 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
 
     public void AddPlayer(PlayerInput input)
     {
+        _pop.pitch = Random.Range(0.8f, 1.2f);
+        _pop.Play();
         _startgameImage.SetActive(true);
         buttonApressed.action.performed += ctx => StartGame();
 
@@ -66,6 +74,7 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
 
     private void StartGame()
     {
+        _horn.Play();
         var Images = GetComponentsInChildren<Transform>();
         foreach (var image in Images)
         {
