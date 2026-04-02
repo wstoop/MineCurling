@@ -89,28 +89,31 @@ public class EndPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_givenPoints == 0) return;
         if (other.CompareTag("Ghost")) return;
 
-        --_playerCount;
-
-        switch (other.gameObject.layer)
+        if (_givenPoints <= 0)
         {
-            case 6:
-                _data.RedPoints += _givenPoints;
-                break;
-            case 7:
-                _data.BluePoints += _givenPoints;
-                break;
-            case 8:
-                _data.GreenPoints += _givenPoints;
-                break;
-            case 9:
-                _data.YellowPoints += _givenPoints;
-                break;
-        }
+            --_playerCount;
 
-        --_givenPoints;
+            switch (other.gameObject.layer)
+            {
+                case 6:
+                    _data.RedPoints += _givenPoints;
+                    break;
+                case 7:
+                    _data.BluePoints += _givenPoints;
+                    break;
+                case 8:
+                    _data.GreenPoints += _givenPoints;
+                    break;
+                case 9:
+                    _data.YellowPoints += _givenPoints;
+                    break;
+            }
+
+            --_givenPoints;
+        }
+        
         var curlingStone = other.gameObject.GetComponent<CurlingStoneController>();
         if (curlingStone != null)
         {
