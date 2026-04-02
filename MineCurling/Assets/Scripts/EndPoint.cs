@@ -91,9 +91,10 @@ public class EndPoint : MonoBehaviour
     {
         if (other.CompareTag("Ghost")) return;
 
+        --_playerCount;
+
         if (_givenPoints <= 0)
         {
-            --_playerCount;
 
             switch (other.gameObject.layer)
             {
