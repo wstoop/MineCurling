@@ -39,7 +39,7 @@ public class PlayerJoinHandler : MonoBehaviour
     public void OnPlayerJoined(PlayerInput input)
     {
         if (_manager == null) return;
-        if (_manager.playerCount >= _maxPlayerCount) return;
+        if (_manager.playerCount > _maxPlayerCount) return;
         if (_spawnPositions[input.playerIndex] == null) return;
         var rb = input.GetComponent<Rigidbody>();
 

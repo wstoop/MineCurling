@@ -90,6 +90,7 @@ public class EndPoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (_givenPoints == 0) return;
+        if (other.CompareTag("Ghost")) return;
 
         --_playerCount;
 
