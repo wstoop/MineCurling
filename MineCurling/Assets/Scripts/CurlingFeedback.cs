@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 [RequireComponent(typeof(CurlingStoneController), typeof(Rigidbody))]
 public class CurlingFeedback : MonoBehaviour
@@ -30,6 +31,12 @@ public class CurlingFeedback : MonoBehaviour
     private Transform _currentTarget = null;
     private Vector3 _initialStoneRotation = Vector3.zero;
     private Rigidbody _body = null;
+
+    [Header("Audio:")]
+    [SerializeField]
+    private AudioSource _slideSound = null;
+    [SerializeField]
+    private AudioClip _sweepSound = null;
 
     private void Awake()
     {
@@ -103,6 +110,30 @@ public class CurlingFeedback : MonoBehaviour
         DoSpinnySpin();
 
         AdjustSpinParticle();
+        
+        PlaySlidingSound();
+
+    }
+
+    private void PlaySlidingSound()
+    {
+        if (_slideSound == null) return;
+
+        if (_body.linearVelocity.sqrMagnitude < 0.01f)
+        {
+            if (_slideSound.isPlaying)
+            {
+                _slideSound.Stop();
+            }
+            return;
+        }
+        
+        AdjustSlideParticle();
+
+        if (!_slideSound.isPlaying)
+        {
+            _slideSound.Play();
+        }
     }
 
     private void AdjustSpinParticle()
@@ -170,5 +201,9 @@ public class CurlingFeedback : MonoBehaviour
         if(_broom == null) return;
 
         _broom.SetActive(_currentTarget != null);
+
+        if(_sweepSound == null) return;
+
+        AudioSource.PlayClipAtPoint(_sweepSound, _broom.transform.position);
     }
 }
