@@ -62,8 +62,12 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
     {
         _pop.pitch = Random.Range(0.8f, 1.2f);
         _pop.Play();
-        _startgameImage.SetActive(true);
-        buttonApressed.action.performed += ctx => StartGame();
+        if(_playerCount == 1)
+        {
+            _startgameImage.SetActive(true);
+            buttonApressed.action.performed += ctx => StartGame();
+        }
+
 
         _playerCount++;
         _spritesImages[_playerCount - 1].enabled = false;
