@@ -94,21 +94,15 @@ public class Obstacles : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<Rigidbody>().linearVelocity /= 2;
-            if(_explosionVFX != null)
+            if (_explosionVFX != null)
             {
                 var temp = Instantiate(_explosionVFX, transform.position, Quaternion.identity);
-                
-                if(temp == null)
+
+                if (temp == null)
                 {
                     UnityEngine.Debug.Log("null");
                 }
-                
-            }
 
-            var audio = GetComponent<AudioSource>();
-            if(audio != null)
-            {
-               Instantiate<AudioSource>(audio, transform.position, Quaternion.identity);
             }
 
             Destroy(gameObject);
