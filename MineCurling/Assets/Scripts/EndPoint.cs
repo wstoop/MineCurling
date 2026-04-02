@@ -109,6 +109,7 @@ public class EndPoint : MonoBehaviour
                     _redfinished = true;
                     _data.RedPoints += _givenPoints;
                     --_givenPoints;
+                    --_playerCount;
                 }
                 break;
             case 7:
@@ -117,6 +118,7 @@ public class EndPoint : MonoBehaviour
                     _bluefinished = true;
                     _data.BluePoints += _givenPoints;
                     --_givenPoints;
+                    --_playerCount;
                 }
                 break;
             case 8:
@@ -125,6 +127,7 @@ public class EndPoint : MonoBehaviour
                     _greenfinished = true;
                     _data.GreenPoints += _givenPoints;
                     --_givenPoints;
+                    --_playerCount;
                 }
                 break;
             case 9:
@@ -133,6 +136,7 @@ public class EndPoint : MonoBehaviour
                     _yellowfinished = true;
                     _data.YellowPoints += _givenPoints;
                     --_givenPoints;
+                    --_playerCount;
                 }
                 break;
         }
