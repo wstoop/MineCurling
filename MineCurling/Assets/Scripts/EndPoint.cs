@@ -24,6 +24,11 @@ public class EndPoint : MonoBehaviour
 
     private GameMode _gameMode;
 
+    private bool _bluefinished = false;
+    private bool _greenfinished = false;
+    private bool _yellowfinished = false;
+    private bool _redfinished = false;
+
     private void Awake()
     {
         _playerCount = FindFirstObjectByType<PlayerInputManager>().playerCount;
@@ -85,6 +90,10 @@ public class EndPoint : MonoBehaviour
     {
         _givenPoints = 3;
         _playerCount = FindFirstObjectByType<PlayerInputManager>().playerCount;
+        _bluefinished = false;
+        _greenfinished = false;
+        _yellowfinished = false;
+        _redfinished = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -98,20 +107,40 @@ public class EndPoint : MonoBehaviour
             switch (other.gameObject.layer)
             {
                 case 6:
-                    _data.RedPoints += _givenPoints;
+                    if(!_redfinished)
+                    {
+                        _redfinished = true;
+                        _data.RedPoints += _givenPoints;
+                        --_givenPoints;
+                    }
+                        
                     break;
                 case 7:
-                    _data.BluePoints += _givenPoints;
+                    if(!_bluefinished)
+                    {
+                        _bluefinished = true;
+                        _data.BluePoints += _givenPoints;
+                        --_givenPoints;
+                    }
                     break;
                 case 8:
-                    _data.GreenPoints += _givenPoints;
+                    if(!_greenfinished)
+                    {
+                        _greenfinished = true;
+                        _data.GreenPoints += _givenPoints;
+                        --_givenPoints;
+                    }
                     break;
                 case 9:
-                    _data.YellowPoints += _givenPoints;
+                    if(!_yellowfinished)
+                    {
+                        _yellowfinished = true;
+                        _data.YellowPoints += _givenPoints;
+                        --_givenPoints;
+                    }
                     break;
             }
 
-            --_givenPoints;
         }
         
         var curlingStone = other.gameObject.GetComponent<CurlingStoneController>();
