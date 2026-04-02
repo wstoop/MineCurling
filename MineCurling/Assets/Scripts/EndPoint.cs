@@ -118,4 +118,9 @@ public class EndPoint : MonoBehaviour
             _gameMode.ReloadScene();
         }
     }
+
+    public EndPointData GetData()
+    {
+        return _data;
+    }
 }
