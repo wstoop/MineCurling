@@ -54,6 +54,8 @@ public class GameMode : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
 
+        GameObject.Find("EndPoint").GetComponent<EndPoint>().ResetPoints();
+
         --_rounds;
 
         if (_rounds <= 0)
