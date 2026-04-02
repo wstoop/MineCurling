@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointCircle
   _endPoint: {fileID: 3408193175376662906}
+  _pointsToAdd: 2
 --- !u!1 &3568481491169859774
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointCircle
   _endPoint: {fileID: 3408193175376662906}
+  _pointsToAdd: 1
 --- !u!1 &4565917489244421823
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointCircle
   _endPoint: {fileID: 3408193175376662906}
+  _pointsToAdd: 2
 --- !u!1 &8276601861636886845
 GameObject:
   m_ObjectHideFlags: 0

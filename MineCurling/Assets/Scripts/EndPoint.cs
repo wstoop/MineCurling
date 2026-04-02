@@ -35,40 +35,40 @@ public class EndPoint : MonoBehaviour
     {
         _playerCount += 1;
     }
-    public void AddPoint(LayerMask layer)
+    public void AddPoint(LayerMask layer, int points)
     {
         switch(layer.value)
         {
             case 6:
-                _data.RedPoints++;
+                _data.RedPoints += points;
                 break;
             case 7:
-                _data.BluePoints++;
+                _data.BluePoints += points;
                 break;
             case 8:
-                _data.GreenPoints++;
+                _data.GreenPoints += points;
                 break;
             case 9:
-                _data.YellowPoints++;
+                _data.YellowPoints += points;
                 break;
         }
     }
 
-    public void RemovePoint(LayerMask layer)
+    public void RemovePoint(LayerMask layer, int points)
     {
         switch (layer.value)
         {
             case 6:
-                _data.RedPoints--;
+                _data.RedPoints -= points;
                 break;
             case 7:
-                _data.BluePoints--;
+                _data.BluePoints -= points;
                 break;
             case 8:
-                _data.GreenPoints--;
+                _data.GreenPoints -= points;
                 break;
             case 9:
-                _data.YellowPoints--;
+                _data.YellowPoints -= points;
                 break;
         }
     }
