@@ -132,8 +132,6 @@ public class CurlingFeedback : MonoBehaviour
         {
             _slideSound.Play();
         }
-
-        Debug.Log(_body.linearVelocity);
     }
 
     private void AdjustSpinParticle()
