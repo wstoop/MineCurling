@@ -93,9 +93,8 @@ public class EndPoint : MonoBehaviour
 
         --_playerCount;
 
-        if (_givenPoints <= 0)
+        if (_givenPoints > 0)
         {
-
             switch (other.gameObject.layer)
             {
                 case 6:
