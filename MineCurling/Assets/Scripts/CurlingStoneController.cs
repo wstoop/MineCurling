@@ -83,6 +83,12 @@ public class CurlingStoneController : MonoBehaviour
 
     private void Update()
     {
+        if(!IsStoppable)
+        {
+            _rigidbody.linearVelocity *= Mathf.Pow(0.9f, Time.deltaTime);
+            _rigidbody.angularVelocity *= Mathf.Pow(_slowdownFactor, Time.deltaTime);
+        }
+
         if ((_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold) && !_isStoppable)
         {
             _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _minimumVelocityThreshold;
@@ -91,6 +97,7 @@ public class CurlingStoneController : MonoBehaviour
         if(IsStoppable)
         {
             _rigidbody.linearVelocity *= Mathf.Pow(_slowdownFactor, Time.deltaTime);
+            _rigidbody.angularVelocity *= Mathf.Pow(_slowdownFactor, Time.deltaTime);
         }
 
         if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold && _isStoppable)
