@@ -49,6 +49,11 @@ MonoBehaviour:
   _waveStartFrequency: 2
   _waveEndFrequency: 0
   _waveFrequencyIncrement: 0
+  _ghostRed: {fileID: 2968748807862178024, guid: d794147366d95a346bbb817565550c94, type: 3}
+  _ghostBlue: {fileID: 2968748807862178024, guid: 8c3edb14a56559e4c8a922fec90c8660, type: 3}
+  _ghostGreen: {fileID: 2968748807862178024, guid: 5e84915c4ef6afd4eb624f37096b8226, type: 3}
+  _ghostYellow: {fileID: 2968748807862178024, guid: 815f504b3dfdb9a429f7554d229ef9e0, type: 3}
+  _rounds: 3
 --- !u!114 &5606264303661408699
 MonoBehaviour:
   m_ObjectHideFlags: 0
