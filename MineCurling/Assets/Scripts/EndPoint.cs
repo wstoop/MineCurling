@@ -101,49 +101,40 @@ public class EndPoint : MonoBehaviour
         if (other.CompareTag("Ghost")) return;
 
 
-        if (_givenPoints > 0)
+        switch (other.gameObject.layer)
         {
-            switch (other.gameObject.layer)
-            {
-                case 6:
-                    if(!_redfinished)
-                    {
-                        _redfinished = true;
-                        _data.RedPoints += _givenPoints;
-                        --_givenPoints;
-                        --_playerCount;
-                    }
-                        
-                    break;
-                case 7:
-                    if(!_bluefinished)
-                    {
-                        _bluefinished = true;
-                        _data.BluePoints += _givenPoints;
-                        --_givenPoints;
-                        --_playerCount;
-                    }
-                    break;
-                case 8:
-                    if(!_greenfinished)
-                    {
-                        _greenfinished = true;
-                        _data.GreenPoints += _givenPoints;
-                        --_givenPoints;
-                        --_playerCount;
-                    }
-                    break;
-                case 9:
-                    if(!_yellowfinished)
-                    {
-                        _yellowfinished = true;
-                        _data.YellowPoints += _givenPoints;
-                        --_givenPoints;
-                        --_playerCount;
-                    }
-                    break;
-            }
-
+            case 6:
+                if(!_redfinished)
+                {
+                    _redfinished = true;
+                    _data.RedPoints += _givenPoints;
+                    --_givenPoints;
+                }
+                break;
+            case 7:
+                if(!_bluefinished)
+                {
+                    _bluefinished = true;
+                    _data.BluePoints += _givenPoints;
+                    --_givenPoints;
+                }
+                break;
+            case 8:
+                if(!_greenfinished)
+                {
+                    _greenfinished = true;
+                    _data.GreenPoints += _givenPoints;
+                    --_givenPoints;
+                }
+                break;
+            case 9:
+                if(!_yellowfinished)
+                {
+                    _yellowfinished = true;
+                    _data.YellowPoints += _givenPoints;
+                    --_givenPoints;
+                }
+                break;
         }
         
         var curlingStone = other.gameObject.GetComponent<CurlingStoneController>();
