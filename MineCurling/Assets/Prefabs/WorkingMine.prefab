@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0890a3373bb7b49b731d484177fcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MineBehaviour
-  _force: 10
+  _force: 5
   _radius: 3
   _explosionVFX: {fileID: 5292527496539588336, guid: 90165964d11f0a54aafe2dfb1fbe6f45, type: 3}
   _explosionDecal: {fileID: 111526510945603273, guid: 0ad1730fc8e62514a84e9b4b3b909bf2, type: 3}
