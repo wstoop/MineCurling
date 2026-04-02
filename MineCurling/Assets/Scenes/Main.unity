@@ -14962,7 +14962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6955934211512216109, guid: c3b85099cda3b3446a31ced6be8484ae, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7585937566008114013, guid: c3b85099cda3b3446a31ced6be8484ae, type: 3}
       propertyPath: m_AnchorMax.y
@@ -17607,8 +17607,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
   NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 1
-  FrequencyGain: 1
+  AmplitudeGain: 0
+  FrequencyGain: 0.3
   m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &1070128485
 PrefabInstance:
