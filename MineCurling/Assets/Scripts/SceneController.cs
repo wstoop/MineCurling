@@ -9,7 +9,7 @@ public class SceneController : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         //SceneManager.LoadScene(sceneName);
-        TransitionManager.Instance().Transition(sceneName, transition, 1);
+        TransitionManager.Instance().Transition(sceneName, transition, 0f);
     }
 
     // Loads a scene by index
