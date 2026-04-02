@@ -34,6 +34,7 @@ public class CurlingStoneController : MonoBehaviour
     private SweepDirection _lastDirection = SweepDirection.None;
     private float _lastSweepTime = 0f;
     private float _sweepCooldown = 0.5f;
+    private float _slowdownFactor = 0.75f;
 
     private bool _isStoppable = false;
 
@@ -85,6 +86,11 @@ public class CurlingStoneController : MonoBehaviour
         if ((_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold) && !_isStoppable)
         {
             _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _minimumVelocityThreshold;
+        }
+
+        if(IsStoppable)
+        {
+            _rigidbody.linearVelocity *= Mathf.Pow(_slowdownFactor, Time.deltaTime);
         }
 
         if (_rigidbody.linearVelocity.sqrMagnitude < _minimumVelocityThreshold && _isStoppable)

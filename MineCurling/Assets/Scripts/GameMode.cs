@@ -84,5 +84,7 @@ public class GameMode : MonoBehaviour
             player.GetComponent<PlayerInput>().ActivateInput();
             player.GetComponent<Rigidbody>().linearVelocity = Vector3.forward;
         }
+
+        MineSpawnManager.Instance.SpawnMine();
     }
 }

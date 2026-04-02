@@ -11,6 +11,13 @@ public class CurlingFeedback : MonoBehaviour
     [SerializeField]
     private GameObject _stone = null;
 
+    [Header("Particles:")]
+    [SerializeField]
+    private ParticleSystem _spinParticles = null;
+    [SerializeField]
+    private ParticleSystem _slideParticles = null;
+    [SerializeField]
+    private float _maxVelocity = 5f;
 
     [Header("Brooming:")]
     [SerializeField, Min(1f)]
@@ -23,6 +30,12 @@ public class CurlingFeedback : MonoBehaviour
     private Transform _currentTarget = null;
     private Vector3 _initialStoneRotation = Vector3.zero;
     private Rigidbody _body = null;
+
+    private void Awake()
+    {
+        InvokeRepeating(nameof(AdjustSpinParticle), 0f, 0.5f);
+        InvokeRepeating(nameof(AdjustSlideParticle), 0f, 0.5f);
+    }
 
     private void Start()
     {
@@ -42,6 +55,16 @@ public class CurlingFeedback : MonoBehaviour
         else
         {
             _initialStoneRotation = _stone.transform.rotation.eulerAngles;
+        }
+
+        if (_spinParticles == null)
+        {
+            Debug.LogError("Spin Particles reference is not set in the inspector.");
+        }
+
+        if(_slideParticles == null)
+        {
+            Debug.LogError("Slide Particles reference is not set in the inspector.");
         }
 
         if (_leftSweepTarget == null)
@@ -74,14 +97,33 @@ public class CurlingFeedback : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-    }
-
     private void Update()
     {
         MoveBroom();
         DoSpinnySpin();
+
+        AdjustSpinParticle();
+    }
+
+    private void AdjustSpinParticle()
+    {
+        if (_spinParticles == null) return;
+        if (_body == null) return;
+
+        var module = _spinParticles.velocityOverLifetime;
+        var orbital = module.orbitalZ;
+        orbital.constant = Math.Abs(orbital.constant) * Mathf.Sign(_body.angularVelocity.y);
+
+        module.orbitalZ = orbital;
+    }
+
+    private void AdjustSlideParticle()
+    {
+        if (_slideParticles == null) return;
+        if (_body == null) return;
+
+        var main = _slideParticles.main;
+        main.startLifetime = _body.linearVelocity.magnitude / _maxVelocity;
     }
 
     private void DoSpinnySpin()

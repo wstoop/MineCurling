@@ -5,6 +5,7 @@ using UnityEngine.Splines;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Composites;
+using EasyTransition;
 
 public class PlayerSelectedSpriteManager : MonoBehaviour
 {
@@ -24,9 +25,9 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
     private List<Image> _spritesImages = new List<Image>();
     private List<Image> _joinedSpritesImages = new List<Image>();
     private int _playerCount = 0;
+    private bool _hasFrozenTime = false;
     private void Awake()
     {
-        Time.timeScale = 0;
         _startgameImage.SetActive(false);
         _inputManager = FindFirstObjectByType<PlayerInputManager>();
         _inputManager.onPlayerJoined += AddPlayer;
@@ -57,5 +58,14 @@ public class PlayerSelectedSpriteManager : MonoBehaviour
     {
         gameObject.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    private void Update()
+    {
+        if(!FindAnyObjectByType<Transition>() && !_hasFrozenTime)
+        {
+            Time.timeScale = 0;
+            _hasFrozenTime = true;
+        }
     }
 }

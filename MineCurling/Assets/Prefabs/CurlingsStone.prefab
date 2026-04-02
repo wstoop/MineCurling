@@ -307,6 +307,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BroomBehaviour
   _broom: {fileID: 1413410149524335560}
   _stone: {fileID: 287090457689249955}
+  _spinParticles: {fileID: 4077543057939091057}
+  _slideParticles: {fileID: 5740187275100679296}
+  _maxVelocity: 10
   _broomSpeed: 25
   _leftSweepTarget: {fileID: 1256380568368653488}
   _rightSweepTarget: {fileID: 4311177713797230662}
@@ -591,6 +594,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7949375177973055048, guid: e6cece768aefa134cbee174565515afb, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949375177973055048, guid: e6cece768aefa134cbee174565515afb, type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949375177973055048, guid: e6cece768aefa134cbee174565515afb, type: 3}
       propertyPath: VelocityModule.orbitalZ.scalar
       value: 8
       objectReference: {fileID: 0}
@@ -602,11 +613,20 @@ PrefabInstance:
       propertyPath: InitialModule.gravityModifier.scalar
       value: -1.62
       objectReference: {fileID: 0}
+    - target: {fileID: 7949375177973055048, guid: e6cece768aefa134cbee174565515afb, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6cece768aefa134cbee174565515afb, type: 3}
+--- !u!198 &4077543057939091057 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7949375177973055048, guid: e6cece768aefa134cbee174565515afb, type: 3}
+  m_PrefabInstance: {fileID: 6253122007625756729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9200986268744125329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2988126356145470376, guid: e6cece768aefa134cbee174565515afb, type: 3}
@@ -688,5 +708,10 @@ PrefabInstance:
 --- !u!4 &904457184154756435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9191084233705341859, guid: 32362c991e941f54a8923a2331d4dff7, type: 3}
+  m_PrefabInstance: {fileID: 8286638081980458736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5740187275100679296 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4371078272641698416, guid: 32362c991e941f54a8923a2331d4dff7, type: 3}
   m_PrefabInstance: {fileID: 8286638081980458736}
   m_PrefabAsset: {fileID: 0}
