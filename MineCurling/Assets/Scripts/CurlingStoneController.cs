@@ -229,7 +229,7 @@ public class CurlingStoneController : MonoBehaviour
 
         _rigidbody.angularVelocity = new Vector3(0f, _rigidbody.angularVelocity.y, 0f);
 
-        var  dir = Vector3.Reflect(_rigidbody.linearVelocity.normalized, collision.contacts[0].normal);
+        var  dir = Vector3.Reflect(transform.forward, collision.contacts[0].normal);
 
         dir.y = 0f;
         dir.Normalize();
