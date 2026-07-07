@@ -206,12 +206,12 @@ public class CurlingStoneController : MonoBehaviour
         {
             case TurnDirection.CW:
                 //Debug.Log("Turning Clockwise");
-                _rigidbody.angularVelocity += new Vector3(0f, _addedAngularVelocity, 0f);
+                _rigidbody.angularVelocity += new Vector3(0f, _addedAngularVelocity, 0f) * Time.deltaTime;
                 break;
 
             case TurnDirection.CCW:
                 //Debug.Log("Turning Counter-Clockwise");
-                _rigidbody.angularVelocity -= new Vector3(0f, _addedAngularVelocity, 0f);
+                _rigidbody.angularVelocity -= new Vector3(0f, _addedAngularVelocity, 0f) * Time.deltaTime;
                 break;
         }
 
